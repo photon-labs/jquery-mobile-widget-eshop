@@ -1,0 +1,108 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:eshop="http://phresco.com/">
+    <head>
+        <title>E-Shop | Phresco</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="user-scalable=0, width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+
+        <!-- Linking styles -->
+        <link type="text/css" rel="stylesheet" media="screen" href="css/eshop/style.css">
+        <link type="text/css" rel="stylesheet" media="screen" href="css/eshop/style1.css"/>
+        <link type="text/css" rel="stylesheet" media="screen" href="css/eshop/jquery.loadmask.css"/>
+
+        <script type="text/javascript" src="js/org/codehaus/mojo/almond/0.0.2-alpha-1/almond-0.0.2-alpha-1.js"></script>
+<script type="text/javascript" src="js/org/codehaus/mojo/jquery-amd/1.7.1-alpha-1/jquery-amd-1.7.1-alpha-1.js"></script>
+<script type="text/javascript" src="js/framework/Clazz.js"></script>
+<script type="text/javascript" src="js/framework/Base.js"></script>
+<script type="text/javascript" src="js/framework/Widget.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/LoginSuccess.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/LoginSuccessBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/RegisterSuccess.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/RegisterSuccessBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Login.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/LoginBootstrap.js"></script>
+<script type="text/javascript" src="js/org/codehaus/mojo/jsonpath-amd/0.8.0/jsonpath-amd-0.8.0.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Phresco.js"></script>
+<script type="text/javascript" src="js/org/codehaus/mojo/xml2json-amd/1.1/xml2json-amd-1.1.js"></script>
+<script type="text/javascript" src="js/org/codehaus/mojo/jquery-ui-amd/1.8.16-alpha-1/jquery-ui-amd-1.8.16-alpha-1.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/EShopAPI.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Menu.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/MenuBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/OrderFormView.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/OrderFormViewBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/ProductDetails.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/ProductDetailsBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/OrderForm.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/OrderFormBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Navigation.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/NavigationBootstrap.js"></script>
+<script type="text/javascript" src="js/framework/Listener.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Products.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/ProductsBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Register.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/RegisterBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/OrderSuccess.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/OrderSuccessBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Category.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/CategoryBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/MyCart.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/MyCartBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/PostReview.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/PostReviewBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Header.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/HeaderBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Review.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/ReviewBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/OrderHistory.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/OrderHistoryBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/ShoppingCart.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/ShoppingCartBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Footer.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/FooterBootstrap.js"></script>
+<script type="text/javascript" src="js/eshop/widgets/Init.js"></script>
+    </head>
+    <body>
+
+        <div id="splash" class="img_div">
+           <img src="images/eshop/splash_logo.png" class="spalsh">
+        </div>
+
+        <div id="container">
+            <eshop:menu-widget api=api></eshop:menu-widget>
+        </div>
+
+        <div id="eshop" style="display:none">
+            <div id="header">
+                <eshop:header-widget api=api></eshop:header-widget> 
+            </div>
+
+            <div id="header-tab" class="header_tab">
+                <eshop:navigation-widget api=api></eshop:navigation-widget>
+            </div>
+
+            <div id="wrapper">
+                <div id="scroller">
+                    <eshop:category-widget api=api></eshop:category-widget>
+                    <eshop:products-widget api=api></eshop:products-widget>
+                    <eshop:productDetails-widget api=api></eshop:productDetails-widget>
+                    <eshop:shoppingcart-widget api=api></eshop:shoppingcart-widget>
+					<eshop:orderform-widget api=api></eshop:orderform-widget>
+                    <eshop:orderformview-widget api=api></eshop:orderformview-widget>
+					<eshop:ordersuccess-widget api=api></eshop:ordersuccess-widget>
+                    <eshop:review-widget api=api></eshop:review-widget>
+                    <eshop:postReview-widget api=api></eshop:postReview-widget>  
+                    <eshop:myCart-widget api=api></eshop:myCart-widget>
+                    <eshop:register-widget api=api></eshop:register-widget>
+                    <eshop:registerSuccess-widget api=api></eshop:registerSuccess-widget> 
+                    <eshop:login-widget api=api></eshop:login-widget>
+                    <eshop:loginsuccess-widget api=api></eshop:loginsuccess-widget> 
+                </div>
+            </div>
+			<div id="footer">
+				<eshop:footer-widget api=api></eshop:footer-widget> 
+			</div>
+        </div>
+
+	</body>
+</html>
