@@ -74,15 +74,6 @@ define( "eshop/widgets/Register", [ "jquery", "framework/Clazz", "framework/Widg
         log_bu_login = $('<div class="log_bu_login">');
         log_reg_bu = $('<div class="log_reg_bu"><a href="#">Register</a></div>');
 
-        $(log_reg_bu).bind('click', {} , function(event){
-            self.hideItems = ['Login','Register'];
-            if(self.phrescoapi.userRegister() === true){
-                self.api.doRegister(self.phrescoapi.registerdata);
-                self.phrescoapi.hideWidget(self.hideItems);
-                self.listener.publish(event,"RegisterSuccess",[event.data]);
-            }										
-        });
-
         log_bu_login.append(log_reg_bu);
         log_bu_cancel = $('<div class="log_bu_cancel">');
         log_reg_bu1 = $('<div class="log_reg_bu"><a href="javascript:void(0);">Cancel</a></div>');
@@ -107,22 +98,6 @@ define( "eshop/widgets/Register", [ "jquery", "framework/Clazz", "framework/Widg
         checkout_btn.append(log_reg_bu2);
         checkout_btn.append(clearDiv);
 		
-		// click for Login button
-        $(log_reg_bu2).bind('click', {} , function(event){
-            self.hideItems = ['Register'];
-            self.phrescoapi.hideWidget(self.hideItems);
-            self.listener.publish(event,"Login",[event.data]);
-        }); 
-		
-		// click for cancel button
-		$(log_reg_bu1).bind('click', {} , function(event){
-			self.hideItems = ['Register','Navigation','Header','Footer'];
-			$("#footer").show();
-			$("#eshop").hide();
-			self.phrescoapi.hideWidget(self.hideItems);
-			self.listener.publish(event,"Menu",[event.data]);
-		});       
-                          
         log_innerdiv.append(log_innerdiv1);
         log_innerdiv.append(checkout_btn);
         log_div.append(log_innerdiv);
@@ -143,6 +118,12 @@ define( "eshop/widgets/Register", [ "jquery", "framework/Clazz", "framework/Widg
         mainContent.append(copydiv1);
         this.mainContent = mainContent;
     };
+	
+	Register.prototype.registerTest = function(registerdata) {
+		var self = this;
+		self.api.doRegister(registerdata);
+		return self.api.resgisterresponse.successMessage;
+	};
 
     Register.prototype.renderUI = function() {
         this.setMainContent();

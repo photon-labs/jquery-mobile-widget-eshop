@@ -43,12 +43,12 @@ define( "eshop/widgets/LoginSuccess", [ "jquery", "framework/Clazz", "framework/
         log_txt_div = $('<div class="log_txt_div"></div>');
                             
         registrationStatus = $('<div class="log_txt"></div>');
-        statusMsg = $('<div class="log_txt_lft">Status : '+ self.api.loginresponse.successMessage +'</div>');
+        statusMsg = $('<div class="logStatus_txt">Status : '+ self.api.loginresponse.successMessage +'</div>');
         registrationStatus.append(statusMsg);
                           
         log_txtEmail = $('<div class="log_txt">');
-		log_txt_lftEmail = $('<div class="log_txt_lft">Email : '+ self.phrescoapi.login.loginEmail+' </div>');
-        log_txt_rhtEmail = $('<div class="log_txt_lft"></div>');
+		log_txt_lftEmail = $('<div class="logStatus_txt">Email : '+ self.phrescoapi.login.loginEmail+' </div>');
+        /* log_txt_rhtEmail = $('<div class="log_txt_lft"></div>'); */
         log_txtEmail.append(log_txt_lftEmail);
         log_txtEmail.append(log_txt_rhtEmail);
                        

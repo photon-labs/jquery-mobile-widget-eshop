@@ -80,6 +80,7 @@ define( "eshop/widgets/EShopAPI", [ "jquery-ui", "xml2json", "framework/Clazz", 
 			dataType: "json",
 			crossDomain: true,
 			cache: true,
+			async:false,
 			success : function(jo, e, xhr) {
 				if(callback !== null) {
 					callback(jo);
@@ -213,6 +214,7 @@ define( "eshop/widgets/EShopAPI", [ "jquery-ui", "xml2json", "framework/Clazz", 
 			dataType: "json",
 			crossDomain: true,
 			cache: true,
+			async:false,
 			success : function(jo, e, xhr) {
 				if(callback !== null) {
 					callback(jo);

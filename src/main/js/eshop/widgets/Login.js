@@ -163,6 +163,12 @@ define( "eshop/widgets/Login", [ "jquery", "framework/Clazz", "framework/Widget"
             this.renderWidgets();
         }*/
     };
+	
+	Login.prototype.loginTest = function(logindata) {
+		var obj, api, self = this;
+        obj =  self.api.doLogin(logindata);
+		return self.api.loginresponse.message;
+    };
 
     Login.prototype.renderUI = function() {
         this.setMainContent();
