@@ -37,8 +37,8 @@ define( "eshop/widgets/MyCart", [ "jquery", "framework/Clazz", "framework/Widget
         myCartQuantity = $('<div class="mycart_quantity">');
         myCartQuantitySub = $('<div class="mycart_quan">');
         myCartUL = $('<ul>');
-        myCartLIQuantity = $('<li><span class="lft">Quantity  :</span><span class="rht">1</span>');
-        myCartLIProduct = $('<li><span class="lft">Product   :</span><span class="rht">LG Electronics 42PW350 3D Plasma HDTV </span>');
+        myCartLIQuantity = $('<li><span class="lft">Quantity:</span><span class="rht">1</span>');
+        myCartLIProduct = $('<li><span class="lft">Product:</span><span class="rht">LG Electronics 42PW350 3D Plasma HDTV </span>');
         myCartLIPrice = $('<li><span class="lft">Price :</span><span class="rht">$200</span>');
         myCartUL.append(myCartLIQuantity);
         myCartUL.append(myCartLIProduct);
