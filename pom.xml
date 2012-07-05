@@ -5,14 +5,14 @@
   <artifactId>PHR_html_jquery_mobileapp</artifactId>
   <packaging>js</packaging>
   <name>PHR_html_jquery_mobileapp</name>
-  <version>1.0.0</version>
+  <version>1.2.0.5003-SNAPSHOT</version>
   <build>
     <sourceDirectory>src/main/js</sourceDirectory>
     <extensions>
       <extension>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>javascript-maven-plugin</artifactId>
-        <version>1.2.0.2000</version>
+        <version>1.2.0.5003-SNAPSHOT</version>
       </extension>
     </extensions>
     <directory>do_not_checkin/target</directory>
