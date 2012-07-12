@@ -1,3 +1,5 @@
+package js.com.qunit;
+
 import org.codehaus.jstestrunner.junit.JSTestSuiteRunner;
 import org.junit.runner.RunWith;
 
