@@ -1,3 +1,9 @@
+<%@ page import="java.io.InputStream" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.util.Properties" %>			
+<%@ page import="com.photon.phresco.configuration.ConfigReader" %>
+<%@ page import="com.photon.phresco.configuration.Configuration" %>
 <!DOCTYPE html> 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:eshop="http://phresco.com/">
     <head>
@@ -51,6 +57,19 @@
 <script type="text/javascript" src="js/eshop/widgets/PostReview.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/PostReviewBootstrap.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/Header.js"></script>
+
+		<%
+			String currentEnv = System.getProperty("SERVER_ENVIRONMENT");
+			String path = getServletContext().getRealPath("/WEB-INF/resources/phresco-env-config.xml");
+			File file = new File(path);
+			ConfigReader reader = new ConfigReader(file);
+			String configJson = reader.getConfigAsJSON(currentEnv, "WebService");
+		%>
+		
+		<script type="text/javascript">
+			var configJsonData = $.parseJSON('<%= configJson%>'); 
+		</script>
+		
 <script type="text/javascript" src="js/eshop/widgets/HeaderBootstrap.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/Review.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/ReviewBootstrap.js"></script>
