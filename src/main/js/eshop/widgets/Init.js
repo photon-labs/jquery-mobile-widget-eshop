@@ -58,7 +58,7 @@ $().ready(function() {
 		listener = new Listener();
 
 		api = new EShopAPI();
-        api.initialize(configJsonData);
+        api.initialize(this.configJsonData);
 		
 		phresco = new Phresco();
 		phresco.initialize(listener, api);
