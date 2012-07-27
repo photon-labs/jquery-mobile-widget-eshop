@@ -8,7 +8,7 @@
   <version>1.2.0.8002-SNAPSHOT</version>
   <build>
     <testSourceDirectory>${project.basedir}/src/test</testSourceDirectory>
-    <sourceDirectory>src/main/js</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
     <extensions>
       <extension>
         <groupId>org.codehaus.mojo</groupId>

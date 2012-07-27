@@ -1,6 +1,6 @@
-/*global define, $, window */
+/*global define, $, xml2json, window */
 
-define( "eshop/widgets/EShopAPI", [ "jquery-ui", "xml2json", "framework/Clazz", "framework/Widget" ], function($, Clazz, Widget) {
+define( "eshop/widgets/EShopAPI", [ "jquery", "framework/Clazz", "framework/Widget" ], function($, Clazz, Widget) {
 
 	function EShopAPI() {
 	}
@@ -10,7 +10,7 @@ define( "eshop/widgets/EShopAPI", [ "jquery-ui", "xml2json", "framework/Clazz", 
 
 	EShopAPI.prototype.apiHost = undefined;
     EShopAPI.prototype.xmlDoc = undefined;
-    //EShopAPI.prototype.wsURL = undefined;
+    EShopAPI.prototype.wsURL = undefined;
     EShopAPI.prototype.wsURLWithoutContext = undefined;
     EShopAPI.prototype.productArray = undefined;
     EShopAPI.prototype.resgisterresponse = undefined;
@@ -18,60 +18,13 @@ define( "eshop/widgets/EShopAPI", [ "jquery-ui", "xml2json", "framework/Clazz", 
 
     EShopAPI.prototype.initialize = function(config) {
 		this.productArray = [];
-		//this.getWsConfig();
 		this.resgisterresponse = {};
 		this.loginresponse = {};
-		this.configService();
 		this.wsURL = config.protocol + '://' + config.host + ':' + config.port + '/' + config.context;
 		this.wsURLWithoutContext = config.protocol + '://' + config.host + ':' + config.port + '/';
+		this.configService();
     };
 
-    EShopAPI.prototype.getWsConfig = function () {
-        
-        var url = "environment.jsp", api = this;
-        $.ajax({
-            url: url,
-            header:"Access-Control-Allow-Headers: x-requested-with",
-            type: "GET",
-            dataType: "json",
-            crossDomain: true,
-            cache: true,
-			async: false,
-            success : function(jo, e, xhr) {
-
-				$.ajax({
-					type: "GET",
-					url: "resources/phresco-env-config.xml",
-					dataType: "xml",
-		            crossDomain: true,
-					async: false,
-					success: function (xml) {
-						api.xmlDoc = xml;
-						var currentEnv = jo.environment,
-						type = "WebService", name = "", 
-						configdata = api.getConfigByName(currentEnv, type, name), 
-						host = configdata.host, 
-						port = configdata.port,
-						protocol = configdata.protocol, 
-						context = configdata.context, 
-						username = configdata.username,
-						password = configdata.password,
-						urlWithoutContext = protocol + '://' + host + ':' + port,
-						url = protocol + '://' + host + ':' + port + '/' + context;
-						api.wsURL = url;
-						api.wsURLWithoutContext = urlWithoutContext;
-					},
-					error : function(xhr, e, et){
-						var jo = {"status":"server error"};
-					}
-				});
-            },
-            error : function(xhr, e, et){
-                var jo = {"status":"server error"};
-            }
-        });             
-    };
-    
     EShopAPI.prototype.getCategories = function (callback) {
 		var api = this, url = api.wsURL + '/rest/api/categories?callback=?';
 
@@ -120,57 +73,9 @@ define( "eshop/widgets/EShopAPI", [ "jquery-ui", "xml2json", "framework/Clazz", 
 			}
 		});
 	};
-
-    EShopAPI.prototype.getConfigByName = function (currentEnv, type, name) {
-		var api = this, i, envNode, env, envDefault, 
-        environments =  api.xmlDoc.documentElement.getElementsByTagName("environment"); 
-            for (i = 0; i < environments.length; i++) {
-                envNode = environments[i];
-                env = envNode.getAttribute("name");
-                envDefault = envNode.getAttribute("default");
-				
-                if (currentEnv !== undefined && currentEnv !== "") {
-                    if (currentEnv === env) {
-                        return this.getConfigJson(envNode, type, name);
-                    }
-                } else if (envDefault === "true") {
-                    return this.getConfigJson(envNode, type, name);
-                }
-            }
-    };
-
-    EShopAPI.prototype.getConfigJson = function(envNode, type, name) {
-        
-        var nodes = envNode.childNodes, i, configNode, configNodeName, configName, xmlString, xmlSerializer,
-        json = {};
-
-        for (i = 0; i < nodes.length; i++) {
-            configNode = nodes[i];
-            configNodeName = configNode.nodeName;
-
-            if (configNodeName === type && name !== undefined && configNodeName !== "#text") {
-                configName = configNode.getAttribute("name");
-                if (configName === name) {
-                    xmlString = (new window.XMLSerializer()).serializeToString(configNode);
-                    json = $.xml2json(configNode);
-                    return json;
-                } else if (name === "") {
-                    xmlString = (new window.XMLSerializer()).serializeToString(configNode);
-                    json = $.xml2json(configNode);
-                    return json;
-                }
-            } else if (configNodeName === type && configNodeName !== "#text") {
-                xmlString = (new window.XMLSerializer()).serializeToString(configNode);
-                json = $.xml2json(configNode);
-                return json;
-            }
-        }
-
-        return json;
-    };
 	
 	EShopAPI.prototype.configService = function () {
-	          
+
 	        var api = this,
 	        url = api.wsURL + '/rest/api/config';
 			$.ajax({
@@ -183,7 +88,6 @@ define( "eshop/widgets/EShopAPI", [ "jquery-ui", "xml2json", "framework/Clazz", 
 				async: false,
 				success : function(response) {
 					api.configresponse = response;
-					//console.info("api.configresponse", api.configresponse);
 				},
 				error : function(xhr, e, et){
 					var jo = {"status":"server error"};
@@ -358,7 +262,6 @@ define( "eshop/widgets/EShopAPI", [ "jquery-ui", "xml2json", "framework/Clazz", 
 		});
     };
 
-			
     EShopAPI.prototype.postReview = function (data) {
         var api = this,
         url = this.wsURL + '/rest/api/product/post/review';
