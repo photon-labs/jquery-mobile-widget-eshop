@@ -1,52 +1,62 @@
 package com.photon.phresco.testcases;
 
 import java.io.IOException;
-
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.openqa.selenium.server.SeleniumServer;
+
 import com.photon.phresco.Screens.MenuScreen;
 import com.photon.phresco.Screens.WelcomeScreen;
-import com.photon.phresco.uiconstants.PhrescoHTML5widgUiConstants;
+import com.photon.phresco.uiconstants.WidgetData;
+import com.photon.phresco.uiconstants.PhrescoUiConstants;
+import com.photon.phresco.uiconstants.UIConstants;
 import com.thoughtworks.selenium.Selenium;
 
 public class TeleVisionAddcart extends TestCase {
 
-	private PhrescoHTML5widgUiConstants phrsc;
-	private Selenium selenium;
+
+	private UIConstants phrsc;
+	private PhrescoUiConstants phr;
+	private WidgetData mobwigdata;
+	private WelcomeScreen wel;
 	private int SELENIUM_PORT;
 	private String browserAppends;
-	private WelcomeScreen wel;
-	String methodName;
-
+	//private LoginScreen loginObject;
+	//private Log log = LogFactory.getLog(getClass());
+    String methodName;
 	@Test
 	public void testTV() throws InterruptedException, IOException, Exception {
 
 		try {
 
-			String serverURL = phrsc.PROTOCOL + "://" + phrsc.HOST + ":"
-					+ phrsc.PORT + "/";
-			browserAppends = "*" + phrsc.BROWSER;
-			assertNotNull("Browser name should not be null", browserAppends);
-			SELENIUM_PORT = Integer.parseInt(phrsc.SERVER_PORT);
+			phr = new PhrescoUiConstants();
+			mobwigdata = new WidgetData();
+			String serverURL = phr.PROTOCOL + "://"
+					+ phr.HOST + ":"
+					+ phr.PORT + "/";
+			browserAppends = "*" + phr.BROWSER;
+			assertNotNull("Browser name should not be null",browserAppends);
+			SELENIUM_PORT = Integer.parseInt(phr.SERVER_PORT);
 			assertNotNull("selenium-port number should not be null",
 					SELENIUM_PORT);
-			wel = new WelcomeScreen(phrsc.SERVER_HOST, SELENIUM_PORT,
-					browserAppends, serverURL, phrsc.SPEED, phrsc.CONTEXT);
+			wel=new WelcomeScreen(phr.SERVER_HOST, SELENIUM_PORT,
+					browserAppends, serverURL, phr.SPEED,
+					phr.CONTEXT );
 			assertNotNull(wel);
-			MenuScreen menu = wel.menuScreen(phrsc);
 			methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 			System.out.println("methodName = " + methodName);
+			MenuScreen menu = wel.menuScreen(phrsc,methodName);
 			menu.Television(methodName);
+			menu.BillingInfo(mobwigdata,methodName);
 		} catch (Exception t) {
 			t.printStackTrace();
 			System.out.println("ScreenCaptured");
-			selenium.captureEntirePageScreenshot("\\WelPageFails.png",
-					"background=#CCFFDD");
+			
 		}
 	}
 
 	public void setUp() throws Exception {
-		phrsc = new PhrescoHTML5widgUiConstants();
+		phrsc = new UIConstants();
 	}
 
 	public void tearDown() {

@@ -4,49 +4,47 @@ import java.io.IOException;
 
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.openqa.selenium.server.SeleniumServer;
 import com.photon.phresco.Screens.WelcomeScreen;
-import com.photon.phresco.uiconstants.PhrescoHTML5widgUiConstants;
-import com.thoughtworks.selenium.Selenium;
+import com.photon.phresco.uiconstants.PhrescoUiConstants;
+
 
 public class WelcomePage extends TestCase {
 
+
 	
-	private PhrescoHTML5widgUiConstants phrsc;
+	private PhrescoUiConstants phr;
 	private WelcomeScreen wel;
-	private Selenium selenium;
 	private int SELENIUM_PORT;
 	private String browserAppends;
-	//private LoginScreen loginObject;
-	
 
 	@Test
 	public void testWel() throws InterruptedException, IOException, Exception {
 
 		try {
 
-			phrsc = new PhrescoHTML5widgUiConstants();
-			String serverURL = phrsc.PROTOCOL + "://"
-					+ phrsc.HOST + ":"
-					+ phrsc.PORT + "/";
-			browserAppends = "*" + phrsc.BROWSER;
+			
+			String serverURL = phr.PROTOCOL + "://"
+					+ phr.HOST + ":"
+					+ phr.PORT + "/";
+			browserAppends = "*" + phr.BROWSER;
 			assertNotNull("Browser name should not be null",browserAppends);
-			SELENIUM_PORT = Integer.parseInt(phrsc.SERVER_PORT);
+			SELENIUM_PORT = Integer.parseInt(phr.SERVER_PORT);
 			assertNotNull("selenium-port number should not be null",
 					SELENIUM_PORT);
-			wel=new WelcomeScreen(phrsc.SERVER_HOST, SELENIUM_PORT,
-					browserAppends, serverURL, phrsc.SPEED,
-					phrsc.CONTEXT );
+			wel=new WelcomeScreen(phr.SERVER_HOST, SELENIUM_PORT,
+					browserAppends, serverURL, phr.SPEED,
+					phr.CONTEXT );
 			assertNotNull(wel);
 		} catch (Exception t) {
 			t.printStackTrace();
 			System.out.println("ScreenCaptured");
-			selenium.captureEntirePageScreenshot("\\WelPageFails.png",
-					"background=#CCFFDD");
+			
 		}
 	}
 
 	public void setUp() throws Exception {
-		phrsc = new PhrescoHTML5widgUiConstants();
+		phr = new PhrescoUiConstants();
 	}
 
 	public void tearDown() {

@@ -22,6 +22,12 @@ public class Constants {
 	 * Execute tests on safari browser
 	 */
 	public static final String BROWSER_SAFARI = "*safari";
+	
+	/**
+	 * Execute tests on opera browser
+	 */
+	public static final String BROWSER_OPERA = "*opera";
+
 
 	public static String DEFAULT_TIMEOUT = "180000";
 
@@ -35,7 +41,7 @@ public class Constants {
 	
 	public static  String MAC_OS = "Mac";
 	
-	public static String DIRECTORY="/target"+"/test"+"/chromedriver";
+	public static String DIRECTORY="/chromedriver";
 	
 	public static String WINDOWS_DIRECTORY=DIRECTORY+"/windows";
 	
