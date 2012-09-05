@@ -14,7 +14,6 @@ define( "eshop/widgets/NavigationBootstrap", [ "jquery", "eshop/widgets/Navigati
         if(this.container !== null ) {
             this.navigationWidget = new Navigation();
             this.navigationWidget.initialize(this.container, listener, phrescoapi, api);
-            this.navigationWidget.render(this.container);
         }
     };
 

@@ -17,6 +17,7 @@ define( "eshop/widgets/Login", [ "jquery", "framework/Clazz", "framework/Widget"
 
     Login.prototype.initialize = function(container, listener, api, phrescoapi) {
         listener.subscribe("Login", this, "onHashChange");
+		listener.subscribe("ShowLogin", this, "onHashChange");
         this.mainNode = container;
         this.hideItems = [];
         this.listener = listener;
@@ -173,16 +174,22 @@ define( "eshop/widgets/Login", [ "jquery", "framework/Clazz", "framework/Widget"
     Login.prototype.renderUI = function() {
         this.setMainContent();
         //this.mainContent.show();
+		this.phrescoapi.navigateToPath( "#Login" );
         return this.mainContent;
     };
     
     Login.prototype.onHashChange = function(event,data) {
         this.render(this.mainNode);
-        this.mainNode.show();
+		this.showWidget();
     };
 
     Login.prototype.hideWidget = function() {
         this.mainNode.hide();
+    };
+	
+	Login.prototype.showWidget = function() {
+        this.mainNode.show();
+		$('#eshop').show();
     };
 
     return Login;

@@ -16,6 +16,7 @@ define( "eshop/widgets/OrderSuccess", [ "jquery", "framework/Clazz", "framework/
 
     OrderSuccess.prototype.initialize = function(container, listener, api, phrescoapi) {
         listener.subscribe("OrderSuccess", this, "onHashChange");
+		listener.subscribe("ShowOrderSuccess",this,"showWidget");
         this.mainNode = container;
         this.listener = listener;
         this.api = api;
@@ -47,16 +48,23 @@ define( "eshop/widgets/OrderSuccess", [ "jquery", "framework/Clazz", "framework/
 
     OrderSuccess.prototype.renderUI = function() {
         this.setMainContent();
+        //this.phrescoapi.navigateToPath( "OrderSuccess" );
         return this.mainContent;
     };
     
-    OrderSuccess.prototype.onHashChange = function(data) {
+    OrderSuccess.prototype.onHashChange = function(event,data) {
         this.render(this.mainNode);
-        this.mainNode.show();
+        this.showWidget();
     };
 
     OrderSuccess.prototype.hideWidget = function() {
         this.mainNode.hide();
+    };
+    
+    
+    OrderSuccess.prototype.showWidget = function() {
+        this.mainNode.show();
+        $('#eshop').show();
     };
 
     return OrderSuccess;

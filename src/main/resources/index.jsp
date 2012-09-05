@@ -57,6 +57,7 @@
 <script type="text/javascript" src="js/eshop/widgets/PostReview.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/PostReviewBootstrap.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/Header.js"></script>
+<script type="text/javascript" src="js/jslibraries/files/history/jquery.hashable.js"></script>	
 
 		<%
 			String currentEnv = System.getProperty("SERVER_ENVIRONMENT");

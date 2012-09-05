@@ -17,6 +17,7 @@ define( "eshop/widgets/Register", [ "jquery", "framework/Clazz", "framework/Widg
 
     Register.prototype.initialize = function(container, listener, api, phrescoapi) {
         listener.subscribe("Register", this, "onHashChange");
+		listener.subscribe("ShowRegister", this, "showWidget");
         this.mainNode = container;
         this.hideItems = [];
         this.listener = listener;
@@ -127,16 +128,22 @@ define( "eshop/widgets/Register", [ "jquery", "framework/Clazz", "framework/Widg
 
     Register.prototype.renderUI = function() {
         this.setMainContent();
+		this.phrescoapi.navigateToPath( "#Register" );
         return this.mainContent;
     };
     
-    Register.prototype.onHashChange = function(data) {
+    Register.prototype.onHashChange = function(event,data) {
         this.render(this.mainNode);
-        this.mainNode.show();
+		this.showWidget();
     };
 
-    Register.prototype.hideWidget = function(){
+    Register.prototype.hideWidget = function() {
         this.mainNode.hide();
+    };
+	
+	Register.prototype.showWidget = function() {
+        this.mainNode.show();
+		$('#eshop').show();
     };
 
     return Register;

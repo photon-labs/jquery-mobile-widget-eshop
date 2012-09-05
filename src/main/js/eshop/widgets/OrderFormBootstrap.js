@@ -14,7 +14,6 @@ define( "eshop/widgets/OrderFormBootstrap", [ "jquery", "eshop/widgets/OrderForm
         if(this.container !== null ) {
             this.OrderFormWidget = new OrderForm();
             this.OrderFormWidget.initialize(this.container, listener, phrescoapi);
-            this.OrderFormWidget.render(this.container);
         }
     };
 

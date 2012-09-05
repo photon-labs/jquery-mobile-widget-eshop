@@ -17,6 +17,7 @@ define( "eshop/widgets/Category", [ "jquery", "framework/Clazz", "framework/Widg
 
     Category.prototype.initialize = function(container, listener, api, phrescoapi) {
         listener.subscribe("Category", this, "onHashChange");
+		listener.subscribe("ShowCategory", this, "showWidget");
         this.mainNode = container;
         this.listener = listener;
         this.phrescoapi = phrescoapi;
@@ -35,7 +36,7 @@ define( "eshop/widgets/Category", [ "jquery", "framework/Clazz", "framework/Widg
                 for (i = 0; i < jsonObject.category.length; i++) {
                     category = jsonObject.category[i];
                     image = imageURL + '/' + category.image;
-                    navLI = $('<li><a href="#"><span class="listicon"><img src="' + image + '" title="image" border="0"  /></span><span class="listicontext">' + category[currentName] + '<span> (' + category.productCount + ')</span></span></a></li>');
+                    navLI = $('<li><a><span class="listicon"><img src="' + image + '" title="image" border="0"  /></span><span class="listicontext">' + category[currentName] + '<span> (' + category.productCount + ')</span></span></a></li>');
                     self.addFunction(navLI, category[currentID], self);
                     navUL.append(navLI);
                 }
@@ -57,28 +58,31 @@ define( "eshop/widgets/Category", [ "jquery", "framework/Clazz", "framework/Widg
 
     Category.prototype.renderUI = function() {
         this.setMainContent();
-        this.mainContent.show();
+		this.phrescoapi.navigateToPath( "#Category" );
         return this.mainContent;
     };
     
-    Category.prototype.onHashChange = function(data) {
+    Category.prototype.onHashChange = function(event,data) {
         this.render(this.mainNode);
-        this.mainNode.show();
+		this.showWidget();
     };
-    
-    Category.prototype.hideWidget = function(){
+
+    Category.prototype.hideWidget = function() {
         this.mainNode.hide();
     };
+	
+	Category.prototype.showWidget = function() {
+        this.mainNode.show();
+		$('#eshop').show();
+    };
+
 
     Category.prototype.addFunction = function(lis, category, self){
         $(lis).bind('click', {categoryId : category, searchCriteria : null} , function(event){
-            //console.info('lis = ' , lis);
             self.hideItems = ['ProductDetails', 'Category', 'Menu','ShoppingCart','OrderFormView','OrderForm','Login','OrderSuccess','Contactus','Aboutus','Register','OrderHistory','LoginSuccess','RegisterSuccess'];
             self.phrescoapi.hideWidget(self.hideItems);
-
             self.hideItems = ['slider','wrapper'];
             self.phrescoapi.sliderWrapperShowHide(true, self.hideItems);
-            
             self.listener.publish(event,"Products",[event.data]);
         });
     };

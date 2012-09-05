@@ -14,7 +14,6 @@ define( "eshop/widgets/ShoppingCartBootstrap", [ "jquery", "eshop/widgets/Shoppi
         if(this.container !== null ) {
             this.shoppingCartWidget = new ShoppingCart();
             this.shoppingCartWidget.initialize(this.container, listener, phrescoapi, api);
-            this.shoppingCartWidget.render(this.container);
         }
     };
 

@@ -19,6 +19,7 @@ define( "eshop/widgets/Products", [ "jquery", "framework/Clazz", "framework/Widg
 
     Products.prototype.initialize = function(container, listener, phrescoapi, api) {
         listener.subscribe("Products",this,"onHashChange");
+		listener.subscribe("ShowProducts",this,"showWidget");
         this.listener = listener;
         this.mainNode = container;
         this.phrescoapi = phrescoapi;
@@ -65,18 +66,24 @@ define( "eshop/widgets/Products", [ "jquery", "framework/Clazz", "framework/Widg
 
     Products.prototype.renderUI = function() {
         this.setMainContent();
+		this.phrescoapi.navigateToPath( "#Products" );
         return this.mainContent;
     };
     
     Products.prototype.onHashChange = function(event,data) {
         this.categoryId = data.categoryId;
         this.searchCriteria = data.searchCriteria;
-        this.render(this.mainNode);
-		this.mainNode.show();
+		this.render(this.mainNode);
+		this.showWidget();
     };
 
     Products.prototype.hideWidget = function(){
         this.mainNode.hide();
+    };
+	
+	Products.prototype.showWidget = function() {
+        this.mainNode.show();
+		$('#eshop').show();
     };
 
     Products.prototype.prodDetail = function(productImage, productName, self, productId, data){
@@ -135,7 +142,7 @@ define( "eshop/widgets/Products", [ "jquery", "framework/Clazz", "framework/Widg
 					reviewContent.append(star);
 				}
 				reviewButtonDiv = $('<div class="review_contright">');
-				reviewButton = $('<a href="#"><img src="images/eshop/review.png" border="0" title="image" /></a></div>');
+				reviewButton = $('<a ><img src="images/eshop/review.png" border="0" title="image" /></a></div>');
 
                 self.addFunction(reviewButton, self);
 

@@ -14,7 +14,6 @@ define( "eshop/widgets/CategoryBootstrap", [ "jquery", "eshop/widgets/Category" 
         if(this.container !== null ) {
             this.categoryWidget = new Category();
             this.categoryWidget.initialize(this.container, listener, api, phrescoapi);
-            this.categoryWidget.render(this.container);
         }
     };
 

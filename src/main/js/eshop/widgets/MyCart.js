@@ -16,6 +16,7 @@ define( "eshop/widgets/MyCart", [ "jquery", "framework/Clazz", "framework/Widget
 
     MyCart.prototype.initialize = function(container, listener, phrescoapi) {
         listener.subscribe("MyCart",this,"onHashChange");
+		listener.subscribe("ShowMyCart",this,"onHashChange");
         this.mainNode = container;
         this.listener = listener;
         this.phrescoapi = phrescoapi;
@@ -76,16 +77,21 @@ define( "eshop/widgets/MyCart", [ "jquery", "framework/Clazz", "framework/Widget
 
     MyCart.prototype.renderUI = function() {
         this.setMainContent();
+		this.phrescoapi.navigateToPath( "#MyCart" );
         return this.mainContent;
     };
     
-    MyCart.prototype.onHashChange = function(event) {
+    MyCart.prototype.onHashChange = function(event,data) {
         this.render(this.mainNode);
-        this.mainNode.show();
+		this.showWidget();
     };
 
-    MyCart.prototype.hideWidget = function(){
+    MyCart.prototype.hideWidget = function() {
         this.mainNode.hide();
+    };
+	
+	MyCart.prototype.showWidget = function() {
+        this.mainNode.show();
     };
 
     return MyCart;

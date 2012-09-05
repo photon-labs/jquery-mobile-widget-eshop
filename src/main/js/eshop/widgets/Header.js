@@ -27,18 +27,24 @@ define( "eshop/widgets/Header", [ "jquery", "framework/Clazz", "framework/Widget
 
     Header.prototype.setMainContent = function() {
         var mainContent = $('<div></div>'), headerInner, btnContainer, backBtn, logo, btnContainer1, 
-        backBtn1, userId=0, self = this;
+        backBtn1, userId=0, self = this, urlhide, hidestring, url, showpage, arrayofstring, hidepage;
         
         headerInner = $('<div class="headerInner headerTop">');
         btnContainer = $('<div class="btn_container">');
             backBtn = $('<a href="javascript:void(0);"><div class="btn"><div><span></span></div><p>Back</p></div></a>');
                 $(backBtn).bind('click', {} , function(event){
-                    // alert('123');
                     $('#container').css("display", "block"); 
                     $('#eshop').css("display", "none");
-                    self.hideItems = ['Category', 'Products','Header', 'Login', 'ProductDetails', 'Register', 'OrderSuccess', 'OrderFormView', 'OrderForm', 'MyCart'];
-                    self.phrescoapi.hideWidget(self.hideItems);
-                    self.listener.publish(event,"Menu",[event.data]);
+					urlhide = document.URL;
+					hidestring = urlhide.split("#");
+					hidepage = hidestring[1];
+					window.history.back();
+					url = document.URL;
+					arrayofstring = url.split("#");
+					showpage = arrayofstring[1];
+					self.hideItems = ['Category', 'Products','ProductDetails','ShoppingCart','OrderFormView','OrderForm','Login','OrderSuccess','Register','LoginSuccess','RegisterSuccess'];
+					self.phrescoapi.hideWidget(self.hideItems);
+					self.listener.publish(null, "Show"+showpage, [null]);  
                 });        
                 btnContainer.append(backBtn);
 
@@ -71,6 +77,25 @@ define( "eshop/widgets/Header", [ "jquery", "framework/Clazz", "framework/Widget
     Header.prototype.hideWidget = function(){
         this.mainNode.hide();
     };
+	
+	
+	Header.prototype.historyback = function(){
+		var urlhide, hidestring, hidepage = [], url, arrayofstring, showpage, self = this ;
+		$(window).bind("hashChange", function(e, newHash, oldHash) {
+			if(oldHash !== ""){
+				hidepage =[oldHash];
+				self.phrescoapi.hideWidget(hidepage);
+				if(newHash === "Menu"){
+					self.listener.publish(null, "Show"+newHash, [null]);
+					$('#eshop').css("display", "none"); 
+				}
+				else{
+					self.listener.publish(null, "Show"+newHash, [null]);
+				}
+			}	
+		});
+		$(window).hashChange();
+	};
 
     return Header;
 });

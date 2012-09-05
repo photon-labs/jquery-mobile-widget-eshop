@@ -14,7 +14,6 @@ define( "eshop/widgets/RegisterSuccessBootstrap", [ "jquery", "eshop/widgets/Reg
         if(this.container !== null ) {
             this.registerSuccessWidget = new RegisterSuccess();
             this.registerSuccessWidget.initialize(this.container, listener, api, phrescoapi);
-            this.registerSuccessWidget.render(this.container);
         }
     };
 

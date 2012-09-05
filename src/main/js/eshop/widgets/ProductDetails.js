@@ -18,6 +18,7 @@ define( "eshop/widgets/ProductDetails", [ "jquery", "framework/Clazz", "framewor
 
     ProductDetails.prototype.initialize = function(container, listener, phrescoapi, api) {
         listener.subscribe("ProductDetails",this,"onHashChange");
+		listener.subscribe("ShowProductDetails", this, "showWidget");
 		this.mainNode = container;
 		this.listener = listener;
         this.phrescoapi = phrescoapi;
@@ -96,7 +97,7 @@ define( "eshop/widgets/ProductDetails", [ "jquery", "framework/Clazz", "framewor
             data.productId = productDetails.id;
             self.productReview(reviewA, self, data.productId, data);
 
-			addToCartA = $('<a href="#"><img src="images/eshop/add_cart.png" border="0" title="image" /></a>');
+			addToCartA = $('<a ><img src="images/eshop/add_cart.png" border="0" title="image" /></a>');
 			btnHolder.append(reviewA);
 			btnHolder.append(addToCartA);
 			pdLeftHolder.append(btnHolder);
@@ -165,11 +166,6 @@ define( "eshop/widgets/ProductDetails", [ "jquery", "framework/Clazz", "framewor
 		this.mainContent = mainContent;
 	};
 
-    ProductDetails.prototype.renderUI = function() {
-        this.setMainContent();
-        return this.mainContent;
-    };
-
     ProductDetails.prototype.productReview = function(reviewButton, self, productId, data){
         $(reviewButton).bind('click', data , function(event){
             //console.info('data = ', [event.data]);
@@ -180,14 +176,26 @@ define( "eshop/widgets/ProductDetails", [ "jquery", "framework/Clazz", "framewor
     };
 
     
+    ProductDetails.prototype.renderUI = function() {
+        this.setMainContent();
+		this.phrescoapi.navigateToPath( "#ProductDetails" );
+        return this.mainContent;
+    };
+    
     ProductDetails.prototype.onHashChange = function(event,data) {
-		this.productId = data.productId;
+        this.productId = data.productId;
+        this.searchCriteria = data.searchCriteria; 
         this.render(this.mainNode);
-		this.mainNode.show(); 
+		this.showWidget();
     };
 
-    ProductDetails.prototype.hideWidget = function(){
+    ProductDetails.prototype.hideWidget = function() {
         this.mainNode.hide();
+    };
+	
+	ProductDetails.prototype.showWidget = function() {
+        this.mainNode.show();
+		$('#eshop').show();
     };
 
     return ProductDetails;

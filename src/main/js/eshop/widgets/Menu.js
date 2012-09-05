@@ -17,6 +17,7 @@ define( "eshop/widgets/Menu", [ "jquery", "framework/Clazz", "framework/Widget" 
 
     Menu.prototype.initialize = function(container, listener, api, phrescoapi) {
         listener.subscribe("Menu", this, "onHashChange");
+		listener.subscribe("ShowMenu", this, "onHashChange");
         this.mainNode = container;
         this.hideItems = [];
         this.listener = listener;
@@ -129,16 +130,21 @@ define( "eshop/widgets/Menu", [ "jquery", "framework/Clazz", "framework/Widget" 
 
     Menu.prototype.renderUI = function() {
         this.setMainContent();
+		this.phrescoapi.navigateToPath( "#Menu" );
         return this.mainContent;
     };
     
-    Menu.prototype.onHashChange = function(data) {
+    Menu.prototype.onHashChange = function(event,data) {
         this.render(this.mainNode);
-        this.mainNode.show();
+		this.showWidget();
     };
 
-    Menu.prototype.hideWidget = function(){
+    Menu.prototype.hideWidget = function() {
         this.mainNode.hide();
+    };
+	
+	Menu.prototype.showWidget = function() {
+        this.mainNode.show();
     };
      return Menu;
 });
