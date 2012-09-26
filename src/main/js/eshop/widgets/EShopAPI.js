@@ -26,7 +26,7 @@ define( "eshop/widgets/EShopAPI", [ "jquery", "framework/Clazz", "framework/Widg
     };
 
     EShopAPI.prototype.getCategories = function (callback) {
-		var api = this, url = api.wsURL + '/rest/api/categories?callback=?';
+		var api = this, url = api.wsURL + '/rest/api/categories';
 
 		$.ajax({
 			url: url,
