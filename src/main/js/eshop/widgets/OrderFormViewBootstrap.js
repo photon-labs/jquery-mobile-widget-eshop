@@ -14,7 +14,6 @@ define( "eshop/widgets/OrderFormViewBootstrap", [ "jquery", "eshop/widgets/Order
         if(this.container !== null ) {
             this.orderFormViewWidget = new OrderFormView();
             this.orderFormViewWidget.initialize(this.container, listener, api, phrescoapi);
-            this.orderFormViewWidget.render(this.container);
         }
     };
 

@@ -14,7 +14,6 @@ define( "eshop/widgets/ProductDetailsBootstrap", [ "jquery", "eshop/widgets/Prod
         if(this.container !== null ) {
             this.productDetailsWidget = new ProductDetails();
             this.productDetailsWidget.initialize(this.container, listener, phrescoapi, api);
-            this.productDetailsWidget.render(this.container);
         }
     };
 

@@ -14,7 +14,6 @@ define( "eshop/widgets/LoginBootstrap", [ "jquery", "eshop/widgets/Login" ], fun
         if(this.container !== null ) {
             this.loginWidget = new Login();
             this.loginWidget.initialize(this.container, listener, api, phrescoapi);
-            this.loginWidget.render(this.container);
         }
     };
 

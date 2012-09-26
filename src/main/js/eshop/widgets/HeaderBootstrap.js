@@ -14,7 +14,6 @@ define( "eshop/widgets/HeaderBootstrap", [ "jquery", "eshop/widgets/Header" ], f
         if(this.container !== null ) {
             this.headerWidget = new Header();
             this.headerWidget.initialize(this.container, listener, api, phrescoapi);
-            this.headerWidget.render(this.container);
         }
     };
 

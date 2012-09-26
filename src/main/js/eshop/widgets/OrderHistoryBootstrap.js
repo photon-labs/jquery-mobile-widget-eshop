@@ -14,7 +14,6 @@ define( "eshop/widgets/OrderHistoryBootstrap", [ "jquery", "eshop/widgets/OrderH
         if(this.container !== null ) {
             this.OrderHistoryWidget = new OrderHistory();
             this.OrderHistoryWidget.initialize(this.container, listener, phrescoapi);
-            this.OrderHistoryWidget.render(this.container);
         }
     };
 

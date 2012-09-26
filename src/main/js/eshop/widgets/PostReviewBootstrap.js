@@ -14,7 +14,6 @@ define( "eshop/widgets/PostReviewBootstrap", [ "jquery", "eshop/widgets/PostRevi
         if(this.container !== null ) {
             this.postReviewWidget = new PostReview();
             this.postReviewWidget.initialize(this.container, listener, phrescoapi, api);
-            this.postReviewWidget.render(this.container);
         }
     };
 

@@ -14,7 +14,6 @@ define( "eshop/widgets/LoginSuccessBootstrap", [ "jquery", "eshop/widgets/LoginS
         if(this.container !== null ) {
             this.loginSuccessWidget = new LoginSuccess();
             this.loginSuccessWidget.initialize(this.container, listener, api, phrescoapi);
-            this.loginSuccessWidget.render(this.container);
         }
     };
 

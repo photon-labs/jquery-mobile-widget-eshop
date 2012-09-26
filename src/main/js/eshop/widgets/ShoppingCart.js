@@ -21,6 +21,7 @@ define( "eshop/widgets/ShoppingCart", [ "jquery", "framework/Clazz", "framework/
 
     ShoppingCart.prototype.initialize = function(container, listener, phrescoapi, api) {
 		listener.subscribe("ShoppingCart",this,"onHashChange");
+		listener.subscribe("ShowShoppingCart",this,"showWidget");
 		this.mainNode = container;
 		this.listener = listener;
         this.phrescoapi = phrescoapi;
@@ -53,7 +54,7 @@ define( "eshop/widgets/ShoppingCart", [ "jquery", "framework/Clazz", "framework/
 				product_contleft =  $('<div class="product_contleft"><p><b>' + shoppingcard_data[j].name + '</b></p></div>');
 				quality_div =  $('<div class="quality_div">');
 				mycart_remove_bu =  $('<div class="mycart_remove_bu">');
-				mycart_remove =  $('<div class="mycart_remove"><a href="#">Remove</a></div>');
+				mycart_remove =  $('<div class="mycart_remove"><a>Remove</a></div>');
 				data = {};
 				data.productId = shoppingcard_data[j].productId;
 				data.singlePrice = shoppingcard_data[j].price;
@@ -91,7 +92,7 @@ define( "eshop/widgets/ShoppingCart", [ "jquery", "framework/Clazz", "framework/
         mycart_btn =  $('<div class="mycart_btn">');
         mycart_update_view_bu1 =  $('<div class="mycart_update_view_bu">');
 		if(self.phrescoapi.productArray.length !== 0){
-			mycart_mid_bu1 =  $('<div class="mycart_mid_bu"><a href="#">Check Out</a></div>');
+			mycart_mid_bu1 =  $('<div class="mycart_mid_bu"><a >Check Out</a></div>');
 			$(mycart_mid_bu1).bind('click', {} , function(event){
 				self.phrescoapi.priceCount();
 				self.hideItems = ['ShoppingCart'];
@@ -123,8 +124,9 @@ define( "eshop/widgets/ShoppingCart", [ "jquery", "framework/Clazz", "framework/
 		$('.footer li.mycart').addClass("mycart_active");
     };  
 
-    ShoppingCart.prototype.renderUI = function() {
+   ShoppingCart.prototype.renderUI = function() {
         this.setMainContent();
+		this.phrescoapi.navigateToPath( "#ShoppingCart" );
         return this.mainContent;
     };
     
@@ -133,11 +135,16 @@ define( "eshop/widgets/ShoppingCart", [ "jquery", "framework/Clazz", "framework/
 		this.categoryId = data.categoryID;
 		this.productId = data.productID;
         this.render(this.mainNode);
-		this.mainNode.show();
+		this.showWidget();
     };
 
 	ShoppingCart.prototype.hideWidget = function(){
         this.mainNode.hide();
+    };
+	
+	ShoppingCart.prototype.showWidget = function() {
+        this.mainNode.show();
+        $('#eshop').show();
     };
 
     ShoppingCart.prototype.addFunction = function(shoppingcard_data, subtotal, mycart_size, checkoutvaluecol4, mycart_remove, data, self){

@@ -17,6 +17,7 @@ define( "eshop/widgets/Review", [ "jquery", "framework/Clazz", "framework/Widget
 
     Review.prototype.initialize = function(container, listener, phrescoapi, api) {
         listener.subscribe("Review",this,"onHashChange");
+		listener.subscribe("ShowReview",this,"showWidget");
         this.listener = listener;
         this.mainNode = container;
         this.phrescoapi = phrescoapi;
@@ -31,7 +32,7 @@ define( "eshop/widgets/Review", [ "jquery", "framework/Clazz", "framework/Widget
         reviedTitleDiv = $('<div class="mycart_head">Customer Reviews </div>');
 
         if(userId > 0){
-            postReviewText = $('<a href="#" class="mycart_head_span">Post Review</a>');
+            postReviewText = $('<a class="mycart_head_span">Post Review</a>');
                 $(postReviewText).bind('click', { productId : productId} , function(event){
                     self.hideItems = ['Review'];
                     self.phrescoapi.hideWidget(self.hideItems);
@@ -120,17 +121,23 @@ define( "eshop/widgets/Review", [ "jquery", "framework/Clazz", "framework/Widget
 
     Review.prototype.renderUI = function() {
         this.setMainContent();
+		this.phrescoapi.navigateToPath( "#Review" );
         return this.mainContent;
     };
     
     Review.prototype.onHashChange = function(event,data) {
         this.productId = data.productId;
         this.render(this.mainNode);
-        this.mainNode.show();
+        this.showWidget();
     };
 
     Review.prototype.hideWidget = function(){
         this.mainNode.hide();
+    };
+	
+	Review.prototype.showWidget = function() {
+        this.mainNode.show();
+		$('#eshop').show();
     };
 
     Review.prototype.prodDetail = function(productImage, productName, self, productId, data){

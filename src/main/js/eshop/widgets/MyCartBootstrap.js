@@ -14,7 +14,6 @@ define( "eshop/widgets/MyCartBootstrap", [ "jquery", "eshop/widgets/MyCart" ], f
         if(this.container !== null ) {
             this.myCartWidget = new MyCart();
             this.myCartWidget.initialize(this.container, listener, phrescoapi);
-            this.myCartWidget.render(this.container);
         }
     };
 

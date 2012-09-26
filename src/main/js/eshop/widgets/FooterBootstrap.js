@@ -14,7 +14,6 @@ define( "eshop/widgets/FooterBootstrap", [ "jquery", "eshop/widgets/Footer" ], f
         if(this.container !== null ) {
             this.footerWidget = new Footer();
             this.footerWidget.initialize(this.container, listener, api, phrescoapi);
-            this.footerWidget.render(this.container);
         }
     };
 

@@ -17,6 +17,7 @@ define( "eshop/widgets/PostReview", [ "jquery", "framework/Clazz", "framework/Wi
 
     PostReview.prototype.initialize = function(container, listener, phrescoapi, api) {
         listener.subscribe("PostReview",this,"onHashChange");
+		listener.subscribe("ShowPostReview",this,"onHashChange");
         this.listener = listener;
         this.mainNode = container;
         this.phrescoapi = phrescoapi;
@@ -88,6 +89,7 @@ define( "eshop/widgets/PostReview", [ "jquery", "framework/Clazz", "framework/Wi
 
     PostReview.prototype.renderUI = function() {
         this.setMainContent();
+		this.phrescoapi.navigateToPath( "#PostReview" );
         return this.mainContent;
     };
     
@@ -101,11 +103,16 @@ define( "eshop/widgets/PostReview", [ "jquery", "framework/Clazz", "framework/Wi
     PostReview.prototype.onHashChange = function(event,data) {
         this.productId = data.productId;
         this.render(this.mainNode);
-        this.mainNode.show();
+        this.showWidget();
     };
 
     PostReview.prototype.hideWidget = function(){
         this.mainNode.hide();
+    };
+	
+	PostReview.prototype.showWidget = function() {
+        this.mainNode.show();
+		$('#eshop').show();
     };
 
     PostReview.prototype.prodDetail = function(productImage, productName, self, productId, data){

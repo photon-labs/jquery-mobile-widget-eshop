@@ -22,6 +22,7 @@ define( "eshop/widgets/Phresco", [ "jquery", "framework/Clazz", "framework/Widge
     Phresco.prototype.api = undefined;
 
     Phresco.prototype.initialize = function(listener, api) {
+		var History;
         this.productArray = [];
         this.orderDetail = {};
         this.register = {};
@@ -31,7 +32,6 @@ define( "eshop/widgets/Phresco", [ "jquery", "framework/Clazz", "framework/Widge
         this.pricequantity = {};
         this.listener = listener;
         this.self = this;
-        this.api = api;
     };
     
     Phresco.prototype.showShoppingCart = function(data) {
@@ -366,6 +366,11 @@ define( "eshop/widgets/Phresco", [ "jquery", "framework/Clazz", "framework/Widge
             self.listener.unsubscribe(this + "Hide","hideWidget");
         });
     };
+	
+		Phresco.prototype.navigateToPath = function(pathname) {
+		document.location.hash = pathname;
+	};
+		
 
     return Phresco;
 });

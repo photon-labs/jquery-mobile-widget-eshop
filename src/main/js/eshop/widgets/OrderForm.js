@@ -16,6 +16,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 
     OrderForm.prototype.initialize = function(container, listener, phrescoapi) {
         listener.subscribe("OrderForm", this, "onHashChange");
+		listener.subscribe("ShowOrderForm",this,"showWidget");
         this.mainNode = container;
         this.listener = listener;
         this.phrescoapi = phrescoapi;
@@ -97,7 +98,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 		mainContent = $('<div></div>');
 		mycart = $('<div class="mycart_div" >');
 		mycart_head = $('<div class="mycart_head">Checkout</div>');
-		checkout_tab = $('<div class="checkout_tab"><a href="#">Customer Information</a></div>');
+		checkout_tab = $('<div class="checkout_tab"><a >Customer Information</a></div>');
 		checkout_tab.obj = this;
 		checkout_tab.openDiv = "1";
 		$(checkout_tab).bind('click', {} , function(event){
@@ -121,7 +122,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 		emailblocksub.append(emailblocksubul);
 		emailblock.append(emailblocksub);  
 
-		deliveryinfo = $('<div class="checkout_tab"><a href="#">Delivery Information</a></div>');
+		deliveryinfo = $('<div class="checkout_tab"><a >Delivery Information</a></div>');
 		deliveryinfo.obj = this;
 		deliveryinfo.openDiv = "2";
 		$(deliveryinfo).bind('click', {} , function(event){
@@ -241,7 +242,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 		deliveryinfodetails.append(deliveryinfolabel);
 		deliveryinfodetails.append(addressblock);
 		
-		billinginfo = $('<div class="checkout_tab"><a href="#">billing Information</a></div>');
+		billinginfo = $('<div class="checkout_tab"><a >billing Information</a></div>');
 		billinginfo.obj = this;
 		billinginfo.openDiv = "3";
 		
@@ -372,7 +373,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 		billinginfodetails.append(billinginfolabel);
 		billinginfodetails.append(billaddressblock);
 		
-		paymentmethod = $('<div class="checkout_tab"><a href="#">Payment Methods</a></div>');
+		paymentmethod = $('<div class="checkout_tab"><a>Payment Methods</a></div>');
 		paymentmethod.obj = this;
 		paymentmethod.openDiv = "4";
 		
@@ -414,7 +415,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 		selectpayment.append(ordertotal);  
 		selectpayment.append(comments);                    
 		
-		ordercomments = $('<div class="checkout_tab"><a href="#">Order Comments</a></div>');
+		ordercomments = $('<div class="checkout_tab"><a >Order Comments</a></div>');
 		ordercomments.obj = this;
 		ordercomments.openDiv = "5";
 		
@@ -434,7 +435,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 		
 		buttons = $('<div class="checkout_btn">');
 		buttonblock = $('<div class="mycart_btn_mid">');
-		revieworder = $('<div class="mycart_mid_bu" id="revieworder"><a href="#">Review Order</a></div>');
+		revieworder = $('<div class="mycart_mid_bu" id="revieworder"><a >Review Order</a></div>');
 		revieworder.obj = this;
 		
 		$(revieworder).bind('click', {} , function(event){  
@@ -450,7 +451,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 			}
 		});
 
-		cancel = $('<div class="mycart_mid_bu"><a href="#">Cancel</a></div>');    
+		cancel = $('<div class="mycart_mid_bu"><a >Cancel</a></div>');    
 
 		$(cancel).bind('click', {} , function(event){
 			if(self.phrescoapi.productArray.length !== 0){
@@ -488,16 +489,22 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 
     OrderForm.prototype.renderUI = function() {
         this.setMainContent();
+		this.phrescoapi.navigateToPath( "#OrderForm" );
         return this.mainContent;
     };
     
-    OrderForm.prototype.onHashChange = function(data) {
+    OrderForm.prototype.onHashChange = function(event,data) {
         this.render(this.mainNode);
-		this.mainNode.show();
+		this.showWidget();
     };
 
-	OrderForm.prototype.hideWidget = function(){
+    OrderForm.prototype.hideWidget = function() {
         this.mainNode.hide();
+    };
+	
+	OrderForm.prototype.showWidget = function() {
+        this.mainNode.show();
+		$('#eshop').show();
     };
 
 	OrderForm.prototype.accordion = function(openDiv){
