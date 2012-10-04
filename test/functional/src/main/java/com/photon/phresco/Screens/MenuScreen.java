@@ -111,7 +111,7 @@ public class MenuScreen extends WebDriverAbstractBaseScreen{
     	waitForElementPresent(phrsc.TABLETS_PROD1_DETAILS,methodName);
     	element = getXpathWebElement(phrsc.TABLETS_PROD1_DETAILS);
 		element.click();
-    	//waitForElementPresent(phrsc.REVIEW,methodName);
+    	waitForElementPresent(phrsc.REVIEW,methodName);
 		waitForElementPresent(phrsc.ADDTOCART,methodName);
 	}
     public  void MoviesnMusic(String methodName)throws Exception {

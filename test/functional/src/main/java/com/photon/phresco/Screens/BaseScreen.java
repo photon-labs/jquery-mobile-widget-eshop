@@ -22,6 +22,7 @@ import com.opera.core.systems.OperaDriver;
 import com.photon.phresco.selenium.util.Constants;
 import com.photon.phresco.selenium.util.ScreenActionFailedException;
 import com.photon.phresco.selenium.util.ScreenException;
+import com.photon.phresco.uiconstants.PhrescoUiConstants;
 import com.thoughtworks.selenium.Selenium;
 
 public class BaseScreen {
@@ -31,7 +32,7 @@ public class BaseScreen {
 	public static WebDriver driver;
 	private static ChromeDriverService chromeService;
 	private static Log log = LogFactory.getLog("BaseScreen");
-
+	private static PhrescoUiConstants phrsc;
 	public BaseScreen() {
 
 	}
@@ -82,7 +83,8 @@ public class BaseScreen {
 		} else if (browserName.equalsIgnoreCase(Constants.BROWSER_FIREFOX)) {
 			log.info("-------------***LAUNCHING FIREFOX***--------------");
 			driver = new FirefoxDriver();
-			windowMaximizeFirefox();
+			//windowMaximizeFirefox();
+			windowResize();
 			driver.navigate().to(url + context);
 
 		} else if (browserName.equalsIgnoreCase(Constants.BROWSER_OPERA)) {
@@ -130,6 +132,18 @@ public class BaseScreen {
 		driver.manage().window().setSize(dim);
 	}
 
+	
+	public static void windowResize(){
+		phrsc = new PhrescoUiConstants();		
+		String resolution = phrsc.RESOLUTION;
+		String[] tokens = resolution.split("x");
+		String resolutionX=tokens[0];
+		String resolutionY=tokens[1];		
+		int x= Integer.parseInt(resolutionX);
+		int y= Integer.parseInt(resolutionY);
+		Dimension screenResolution = new Dimension(x,y);
+		driver.manage().window().setSize(screenResolution);
+	}
 	public void closeBrowser() {
 		log.info("-------------***BROWSER CLOSING***--------------");
 		if (driver != null) {
