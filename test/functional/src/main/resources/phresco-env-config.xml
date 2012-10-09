@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<environment>
+           <Browser>firefox</Browser>
+		   <Server>
+               <context>test_Config_JqueryMobileWidget_Eshop</context>
+               <protocol>http</protocol>
+               <host>172.16.22.106</host>
+               <port>8080</port>
+               <resolution>960x640</resolution>
+               
+           </Server>
+           
+</environment>
