@@ -2,7 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.photon.phresco</groupId>
-  <artifactId>PHR_html_jquery_mobileapp</artifactId> <packaging>js</packaging>  
+  <artifactId>PHR_html_jquery_mobileapp</artifactId>
+<!-- <packaging>js</packaging>  -->
   <name>PHR_html_jquery_mobileapp</name>
   <version>2.0.0.11000</version>
   <build>
