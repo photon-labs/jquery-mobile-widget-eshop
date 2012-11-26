@@ -51,6 +51,33 @@
 		</fileSet>
 		
 		<fileSet>
+			<directory>src/main/webapp/WEB-INF</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+			    <include>web.xml</include>
+			</includes>
+			<excludes>
+			    <exclude>/js/**</exclude>
+			</excludes>
+		</fileSet>
+		
+		<fileSet>
+			<directory>${basedir}/do_not_checkin/target/jstest/overlays</directory>
+			<outputDirectory>/lib</outputDirectory>
+			<includes>
+			    <include>/jslibraries/**</include>
+			</includes>
+		</fileSet>
+		
+		<fileSet>
+			<directory>${basedir}/do_not_checkin/target/jstest/overlays/net.awired.js</directory>
+			<outputDirectory>/lib</outputDirectory>
+			<includes>
+			    <include>/almond/*.js</include>
+			</includes>
+		</fileSet>
+		
+		<fileSet>
 			<directory>src/main/resources</directory>
 			<outputDirectory>/WEB-INF/classes</outputDirectory>
 			<excludes>
