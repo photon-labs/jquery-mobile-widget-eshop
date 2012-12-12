@@ -2,10 +2,12 @@ package com.photon.phresco.testcases;
 
 import java.io.IOException;
 
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import com.photon.phresco.Screens.WelcomeScreen;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
@@ -13,49 +15,48 @@ import com.photon.phresco.uiconstants.UIConstants;
 import com.photon.phresco.uiconstants.UserInfoConstants;
 import com.photon.phresco.uiconstants.WidgetData;
 
-public class WelcomePage {
+public class WelcomePageTestCase {
 
 	
-	private static PhrescoUiConstants phrescoUiConstants;
-	private static WelcomeScreen welcomeScreen;
-	private static String methodName;
-	private static String selectedBrowser;
-	private static UIConstants uiConstants;
-	private static UserInfoConstants userInfoConstants;
-	private static WidgetData widgetData;
+	private  PhrescoUiConstants phrescoUiConstants;
+	private  WelcomeScreen welcomeScreen;
+	private  String methodName;
+	private  String selectedBrowser;
+	private  UIConstants uiConstants;
+	private  UserInfoConstants userInfoConstants;
+	private  WidgetData widgetData;
 
 	// private Log log = LogFactory.getLog(getClass());
 
-	@BeforeClass
-	public static void setUp() throws Exception {
+	@Parameters(value = { "browser", "platform" })
+	@BeforeTest
+	public  void setUp(String browser, String platform) throws Exception {
 		try {
 			phrescoUiConstants = new PhrescoUiConstants();
 			userInfoConstants = new UserInfoConstants();
 			uiConstants=new UIConstants();
 			widgetData=new WidgetData();
-			launchingBrowser();
+			String selectedBrowser = browser;
+			String selectedPlatform = platform;
+			
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
+	
+			/*Reporter.log("Selected Browser to execute testcases--->>"
+			+ selectedBrowser);*/
+	System.out
+	.println("-----------Selected Browser to execute testcases--->>"
+			+ selectedBrowser);
+			String applicationURL = phrescoUiConstants.PROTOCOL + "://"
+					+ phrescoUiConstants.HOST + ":" + phrescoUiConstants.PORT
+					+ "/";
+			welcomeScreen = new WelcomeScreen(selectedBrowser, selectedPlatform, applicationURL,
+					phrescoUiConstants.CONTEXT,userInfoConstants,uiConstants,widgetData,phrescoUiConstants);
 			
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}
-
-	public static void launchingBrowser() throws Exception {
-		try {
-			String applicationURL = phrescoUiConstants.PROTOCOL + "://"
-					+ phrescoUiConstants.HOST + ":" + phrescoUiConstants.PORT
-					+ "/";
-			selectedBrowser = phrescoUiConstants.BROWSER;
-			welcomeScreen = new WelcomeScreen(selectedBrowser, applicationURL,
-					phrescoUiConstants.CONTEXT,userInfoConstants,uiConstants,widgetData,phrescoUiConstants);
-					
-		} catch (Exception exception) {
-			exception.printStackTrace();
-
-		}
-
-	}
-
 	@Test
 	public void testWelcomePageScreen() throws InterruptedException,
 			IOException, Exception {
@@ -229,8 +230,8 @@ public class WelcomePage {
 		}
 	}
 
-	@AfterClass
-	public static void tearDown() {
+	@AfterTest
+	public void tearDown() {
 		welcomeScreen.closeBrowser();
 	}
 

@@ -2,11 +2,11 @@
 <environment>
            <Browser>firefox</Browser>
 		   <Server>
-               <context>test_Config_JqueryMobileWidget_Eshop</context>
+               <context>mobilewidget</context>
                <protocol>http</protocol>
-               <host>172.16.22.106</host>
+               <host>172.16.17.180</host>
                <port>8080</port>
-               <resolution>960x640</resolution>
+               <resolution></resolution>
                
            </Server>
            
