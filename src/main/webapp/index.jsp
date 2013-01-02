@@ -17,8 +17,8 @@
         <link type="text/css" rel="stylesheet" media="screen" href="css/eshop/style1.css"/>
         <link type="text/css" rel="stylesheet" media="screen" href="css/eshop/jquery.loadmask.css"/>
 
-<script type="text/javascript" charset="utf-8" src="lib/almond/almond.js"></script>
-<script type="text/javascript" src="lib/jslibraries/files/jslib_jquery-amd/1.7.1-alpha-1/jslib_jquery-amd-1.7.1-alpha-1.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/almond/almond.js"></script>
+<script type="text/javascript" src="js/jslibraries/files/jslib_jquery-amd/1.7.1-alpha-1/jslib_jquery-amd-1.7.1-alpha-1.js"></script>
 <script type="text/javascript" src="js/framework/Clazz.js"></script>
 <script type="text/javascript" src="js/framework/Base.js"></script>
 <script type="text/javascript" src="js/framework/Widget.js"></script>
@@ -28,10 +28,10 @@
 <script type="text/javascript" src="js/eshop/widgets/RegisterSuccessBootstrap.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/Login.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/LoginBootstrap.js"></script>
-<script type="text/javascript" src="lib/jslibraries/files/jslib_jsonpath-amd/0.8.0/jslib_jsonpath-amd-0.8.0.js"></script>
+<script type="text/javascript" src="js/jslibraries/files/jslib_jsonpath-amd/0.8.0/jslib_jsonpath-amd-0.8.0.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/Phresco.js"></script>
-<script type="text/javascript" src="lib/jslibraries/files/jslib_xml2json-amd/1.1/jslib_xml2json-amd-1.1.js"></script>
-<script type="text/javascript" src="lib/jslibraries/files/jslib_jquery-ui-amd/1.8.16-alpha-1/jslib_jquery-ui-amd-1.8.16-alpha-1.js"></script>
+<script type="text/javascript" src="js/jslibraries/files/jslib_xml2json-amd/1.1/jslib_xml2json-amd-1.1.js"></script>
+<script type="text/javascript" src="js/jslibraries/files/jslib_jquery-ui-amd/1.8.16-alpha-1/jslib_jquery-ui-amd-1.8.16-alpha-1.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/EShopAPI.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/Menu.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/MenuBootstrap.js"></script>
@@ -57,7 +57,7 @@
 <script type="text/javascript" src="js/eshop/widgets/PostReview.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/PostReviewBootstrap.js"></script>
 <script type="text/javascript" src="js/eshop/widgets/Header.js"></script>
-<script type="text/javascript" src="lib/jslibraries/files/history/jslib_jquery.hashable/1.0.0/jslib_jquery.hashable-1.0.0.js"></script>
+<script type="text/javascript" src="js/jslibraries/files/history/jslib_jquery.hashable/1.0.0/jslib_jquery.hashable-1.0.0.js"></script>
 
 		<%
 			String currentEnv = System.getProperty("SERVER_ENVIRONMENT");
