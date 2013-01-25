@@ -1,9 +1,13 @@
-import org.codehaus.jstestrunner.junit.JSTestSuiteRunner;
-import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 
-/**
- * Run all JS tests associated with this project.
- */
-@RunWith(JSTestSuiteRunner.class)
+import org.junit.Test;
+
+
 public class SuiteTest {
+
+@Test
+public void testHelloWorld()
+{
+assertEquals("HelloWorld","HelloWorld");
+}
 }
