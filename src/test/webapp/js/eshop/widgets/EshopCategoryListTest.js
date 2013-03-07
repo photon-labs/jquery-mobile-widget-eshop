@@ -15,10 +15,12 @@ require(  [ "jquery", "eshop/widgets/WSConfig", "eshop/widgets/EShopAPI",  "esho
 			// Setup view and call method under test
 			category = new Category();
 			wsconfig = new WSConfig();
-			wsURL = wsconfig.WSConfigurl;
 			api = new EShopAPI();
-			api.initialize(wsURL); 
-			category.api = api;
+			wsconfig.getEnvironment(function(wsURL){
+				api = new EShopAPI();
+				api.initialize(wsURL); 
+				category.api = api;
+			});
 
 		setTimeout(function() {
 			 start();
@@ -43,7 +45,7 @@ require(  [ "jquery", "eshop/widgets/WSConfig", "eshop/widgets/EShopAPI",  "esho
 		}, 1000);
 			
 	}); 
-
+	
 	asyncTest("Testing category-widget with Item different Count", function() {
 			var category, api, mainContent, output1, output2, url,
 			 navUL = $('<ul>'), i, imageURL, navLI, currentName = 'name', currentID = 'id', image, categorylength = 9, wsURL, wsconfig;
@@ -51,10 +53,11 @@ require(  [ "jquery", "eshop/widgets/WSConfig", "eshop/widgets/EShopAPI",  "esho
 			// Setup view and call method under test
 			category = new Category();
 			wsconfig = new WSConfig();
-			wsURL = wsconfig.WSConfigurl;
-			api = new EShopAPI();
-			api.initialize(wsURL); 
-			category.api = api;
+			wsconfig.getEnvironment(function(wsURL){
+				api = new EShopAPI();
+				api.initialize(wsURL); 
+				category.api = api;
+			});
 
 		setTimeout(function() {
 			 start();
@@ -79,4 +82,7 @@ require(  [ "jquery", "eshop/widgets/WSConfig", "eshop/widgets/EShopAPI",  "esho
 		}, 1000);
 			
 	}); 
+	
+	
+	
 });

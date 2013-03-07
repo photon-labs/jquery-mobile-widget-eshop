@@ -13,13 +13,15 @@ require(  [ "jquery", "eshop/widgets/Products", "eshop/widgets/EShopAPI" , "esho
 		// Setup view and call method under test
 		products = new Products();
 		wsconfig = new WSConfig();
-		wsURL = wsconfig.WSConfigurl;
-		api = new EShopAPI();
-		api.initialize(wsURL); 
-        products.api = api;
-		products.listener = undefined;
-		products.phrescoapi = undefined;
-		products.categoryid = 1;
+		wsconfig.getEnvironment(function(wsURL){
+			api = new EShopAPI();
+			api.initialize(wsURL); 
+			products.api = api;
+			products.listener = undefined;
+			products.phrescoapi = undefined;
+			products.categoryid = 1;
+		});
+		
 		
 		setTimeout(function() {
 			 start();
@@ -82,18 +84,20 @@ require(  [ "jquery", "eshop/widgets/Products", "eshop/widgets/EShopAPI" , "esho
 		}, 1000);
 	});
 	
-	asyncTest("Testing Products-widget With Different CategoryID", function() {
+	 asyncTest("Testing Products-widget With Different CategoryID", function() {
 		var products, api, mainContent, navUL, output1, output2, categoryid, wsURL, wsconfig;
 		// Setup view and call method under test
 		products = new Products();
 		wsconfig = new WSConfig();
-		wsURL = wsconfig.WSConfigurl;
-		api = new EShopAPI();
-		api.initialize(wsURL);
-        products.api = api;
-		products.listener = undefined;
-		products.phrescoapi = undefined;
-		products.categoryid = 2;
+		wsconfig.getEnvironment(function(wsURL){
+			api = new EShopAPI();
+			api.initialize(wsURL);
+			products.api = api;
+			products.listener = undefined;
+			products.phrescoapi = undefined;
+			products.categoryid = 2;
+		});
+		
 		setTimeout(function() {
 			 start();
 			output1 = products.testRenderUI();
@@ -153,5 +157,5 @@ require(  [ "jquery", "eshop/widgets/Products", "eshop/widgets/EShopAPI" , "esho
 				output2 = mainContent;
 				equal(output1.html(), output2.html(),"Failure - Mismatch CategoryID");
 		}, 1000);
-	});
+	}); 
 });

@@ -16,19 +16,22 @@ require(  [ "jquery", "eshop/widgets/Login", "eshop/widgets/EShopAPI", "eshop/wi
 		loginData = new Login();
 		api = new EShopAPI();
 		wsconfig = new WSConfig();
-		wsURL = wsconfig.WSConfigurl;
-		api = new EShopAPI();
-		api.initialize(wsURL); 
+		wsconfig.getEnvironment(function(wsURL){
+			api = new EShopAPI();
+			api.initialize(wsURL); 
 
-        loginData.api = api;
+			loginData.api = api;
+			
+			login = {};
+			login.loginEmail = 'john@phresco.com';
+			login.password = 'john';
+			logindata = {};
+			logindata.login = login;
+
+			output1 = loginData.loginTest(logindata);
 		
-        login = {};
-        login.loginEmail = 'john@phresco.com';
-        login.password = 'john';
-        logindata = {};
-        logindata.login = login;
-
-		output1 = loginData.loginTest(logindata);
+		});
+		
 		setTimeout(function() {
 			start();
 			output2 = "success";
@@ -48,19 +51,21 @@ require(  [ "jquery", "eshop/widgets/Login", "eshop/widgets/EShopAPI", "eshop/wi
 		loginData = new Login();
 		api = new EShopAPI();
 		wsconfig = new WSConfig();
-		wsURL = wsconfig.WSConfigurl;
-		api = new EShopAPI();
-		api.initialize(wsURL); 
+		wsconfig.getEnvironment(function(wsURL){
+			api = new EShopAPI();
+			api.initialize(wsURL); 
 
-        loginData.api = api;
+			loginData.api = api;
+			
+			login = {};
+			login.loginEmail = 'john123@phresco.com';
+			login.password = 'john';
+			logindata = {};
+			logindata.login = login;
+
+			output1 = loginData.loginTest(logindata);
+		});
 		
-        login = {};
-        login.loginEmail = 'john123@phresco.com';
-        login.password = 'john';
-        logindata = {};
-        logindata.login = login;
-
-		output1 = loginData.loginTest(logindata);
 		setTimeout(function() {
 			start();
 			output2 = "failure";
@@ -78,19 +83,22 @@ require(  [ "jquery", "eshop/widgets/Login", "eshop/widgets/EShopAPI", "eshop/wi
 		loginData = new Login();
 		api = new EShopAPI();
 		wsconfig = new WSConfig();
-		wsURL = wsconfig.WSConfigurl;
-		api = new EShopAPI();
-		api.initialize(wsURL); 
+		wsconfig.getEnvironment(function(wsURL){
+			api = new EShopAPI();
+			api.initialize(wsURL); 
 
-        loginData.api = api;
+			loginData.api = api;
+			
+			login = {};
+			login.loginEmail = 'john@phresco.com';
+			login.password = 'suresh';
+			logindata = {};
+			logindata.login = login;
+
+			output1 = loginData.loginTest(logindata);
 		
-        login = {};
-        login.loginEmail = 'john@phresco.com';
-        login.password = 'suresh';
-        logindata = {};
-        logindata.login = login;
-
-		output1 = loginData.loginTest(logindata);
+		});
+		
 		setTimeout(function() {
 			start();
 			output2 = "failure";
@@ -108,19 +116,21 @@ require(  [ "jquery", "eshop/widgets/Login", "eshop/widgets/EShopAPI", "eshop/wi
 		loginData = new Login();
 		api = new EShopAPI();
 		wsconfig = new WSConfig();
-		wsURL = wsconfig.WSConfigurl;
-		api = new EShopAPI();
-		api.initialize(wsURL); 
+		wsconfig.getEnvironment(function(wsURL){
+			api = new EShopAPI();
+			api.initialize(wsURL); 
 
-        loginData.api = api;
+			loginData.api = api;
+			
+			login = {};
+			login.loginEmail = 'john111@phresco.com';
+			login.password = 'suresh111';
+			logindata = {};
+			logindata.login = login;
+
+			output1 = loginData.loginTest(logindata);
+		});
 		
-        login = {};
-        login.loginEmail = 'john111@phresco.com';
-        login.password = 'suresh111';
-        logindata = {};
-        logindata.login = login;
-
-		output1 = loginData.loginTest(logindata);
 		setTimeout(function() {
 			start();
 			output2 = "failure";

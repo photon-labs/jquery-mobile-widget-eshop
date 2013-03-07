@@ -8,15 +8,15 @@ require(  [ "jquery", "eshop/widgets/PostReview", "eshop/widgets/EShopAPI", "esh
 	 * Test that the setMainContent method sets the text in the PostReview-widget
 	 */
 	 module("PostReview.js;PostReview");
-	test("Testing PostReview-widget With Same Case", function() {
+	asyncTest("Testing PostReview-widget With Same Case", function() {
 	
 		var self = this, jsonData, api, listener, output1, postReview, productId,  
 			mainContent = $('<div class="tab_text" id="writeareview"></div>'), reviewForm, reviewFieldset, reviewRating, reviewRatingTitle, ratingStarSpan, i, starImage, star, starValueBox, pid, reviewComment, reviewCommentBox, reviewSubmit, reviewSubmitButton, reviewCancelButton, data, output2, wsconfig, wsURL;
 			
 			postReview = new PostReview();
 			wsconfig = new WSConfig();
-			wsURL = wsconfig.WSConfigurl;
-			api = new EShopAPI();
+			wsconfig.getEnvironment(function(wsURL){
+				api = new EShopAPI();
 			api.initialize(wsURL); 
 			postReview.api = api;
 			postReview.listener = undefined;
@@ -65,18 +65,22 @@ require(  [ "jquery", "eshop/widgets/PostReview", "eshop/widgets/EShopAPI", "esh
 			reviewForm.append(reviewFieldset);
 			mainContent.append(reviewForm);
 			output2 = mainContent;
-			equal(output1.html(), output2.html(), "Success - TestCase for PostReview Passed");
+			});
+			setTimeout(function() {
+			 start();
+				equal(output1.html(), output2.html(), "Success - TestCase for PostReview Passed");
+			},1000);
 	});
 
-	test("Testing PostReview-widget with Mismatch Case", function() {
+		asyncTest("Testing PostReview-widget with Mismatch Case", function() {
 	
 		var self = this, jsonData, api, listener, output1, postReview, productId,  
 			mainContent = $('<div class="tab_text" id="writeareview"></div>'), reviewForm, reviewFieldset, reviewRating, reviewRatingTitle, ratingStarSpan, i, starImage, star, starValueBox, pid, reviewComment, reviewCommentBox, reviewSubmit, reviewSubmitButton, reviewCancelButton, data, output2, wsconfig, wsURL;
 			
 			postReview = new PostReview();
 			wsconfig = new WSConfig();
-			wsURL = wsconfig.WSConfigurl;
-			api = new EShopAPI();
+				wsconfig.getEnvironment(function(wsURL){
+					api = new EShopAPI();
 			api.initialize(wsURL); 
 			postReview.api = api;
 			postReview.listener = undefined;
@@ -126,6 +130,13 @@ require(  [ "jquery", "eshop/widgets/PostReview", "eshop/widgets/EShopAPI", "esh
 			reviewForm.append(reviewFieldset);
 			mainContent.append(reviewForm);
 			output2 = mainContent;
+				
+			});
+				
+		setTimeout(function() {
+		 start();
 			notEqual(output1.html(), output2.html(), "Failure - Mismatch In ProductID");
-	});
+		},1000);
+		
+	}); 
 });

@@ -16,15 +16,17 @@ require(  [ "jquery", "eshop/widgets/Review", "eshop/widgets/EShopAPI", "eshop/w
 		
 		review = new Review();
 		wsconfig = new WSConfig();
-		wsURL = wsconfig.WSConfigurl;
-		api = new EShopAPI();
-		api.initialize(wsURL); 
+		wsconfig.getEnvironment(function(data){
+			api = new EShopAPI();
+			api.initialize(data); 
+
+			api.configService();
+			review.api = api;
+			review.listener = undefined;
+			review.phrescoapi = undefined;
+			review.productId = 1;
+		});
 		
-		api.configService();
-		review.api = api;
-		review.listener = undefined;
-		review.phrescoapi = undefined;
-		review.productId = 1;
 		
 		setTimeout(function() {
 			start();
@@ -115,15 +117,17 @@ require(  [ "jquery", "eshop/widgets/Review", "eshop/widgets/EShopAPI", "eshop/w
 		
 		review = new Review();
 		wsconfig = new WSConfig();
-		wsURL = wsconfig.WSConfigurl;
-		api = new EShopAPI();
-		api.initialize(wsURL); 
+		wsconfig.getEnvironment(function(data){
+			api = new EShopAPI();
+			api.initialize(data); 
+			
+			api.configService();
+			review.api = api;
+			review.listener = undefined;
+			review.phrescoapi = undefined;
+			review.productId = 1;
 		
-		api.configService();
-		review.api = api;
-		review.listener = undefined;
-		review.phrescoapi = undefined;
-		review.productId = 1;
+		});
 		
 		setTimeout(function() {
 			start();
