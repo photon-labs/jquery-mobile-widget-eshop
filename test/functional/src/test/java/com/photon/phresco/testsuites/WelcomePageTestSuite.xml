@@ -2,7 +2,16 @@
 <suite name="WelcomePageTestSuite" parallel="tests"
 	thread-count="5" verbose="3">
 
-	<test name="VerifyWelcomePageOnFirefox" junit="false"
+    <test name="VerifyWelcomePageOnHtmlUnit" junit="false"
+		preserve-order="true">
+		<parameter name="browser" value="htmlunit" />
+		<parameter name="platform" value="WINDOWS" />
+		<classes>
+			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
+		</classes>
+	</test>
+	
+	<!-- <test name="VerifyWelcomePageOnFirefox" junit="false"
 		preserve-order="true">
 		<parameter name="browser" value="firefox" />
 		<parameter name="platform" value="WINDOWS" />
@@ -10,6 +19,7 @@
 			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
 		</classes>
 	</test>
+	
 	<test name="VerifyWelcomePageOnChrome2" junit="false"
 		preserve-order="true">
 		<parameter name="browser" value="googlechrome" />
@@ -18,6 +28,33 @@
 			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
 		</classes>
 	</test> 
+	
+	<test name="VerifyWelcomePageOnIexplore" junit="false"
+		preserve-order="true">
+		<parameter name="browser" value="iexplorer" />
+		<parameter name="platform" value="WINDOWS" />
+		<classes>
+			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
+		</classes>
+	</test>
+	
+	<test name="VerifyWelcomePageOnOpera" junit="false"
+		preserve-order="true">
+		<parameter name="browser" value="opera" />
+		<parameter name="platform" value="WINDOWS" />
+		<classes>
+			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
+		</classes>
+	</test>
+	
+	<test name="VerifyWelcomePageOnSafari" junit="false"
+		preserve-order="true">
+		<parameter name="browser" value="safari" />
+		<parameter name="platform" value="WINDOWS" />
+		<classes>
+			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
+		</classes>
+	</test> -->
 	
 </suite>
  

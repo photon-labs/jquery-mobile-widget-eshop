@@ -17,6 +17,7 @@ public class Constants {
 	 * Execute tests on googlechrome browser
 	 */
 	public static final String BROWSER_CHROME = "googlechrome";
+	public static final String BROWSER_HEADLESS="htmlunit";
 	public static final String BROWSER_OPERA = "opera";
 	
 	/**

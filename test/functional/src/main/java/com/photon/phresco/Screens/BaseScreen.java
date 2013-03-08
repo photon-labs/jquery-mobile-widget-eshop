@@ -153,7 +153,22 @@ public class BaseScreen {
 			// break;
 			// driver = new RemoteWebDriver(server, capabilities);
 
-		} else {
+		}else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_HEADLESS)) {
+			log.info("-------------***LAUNCHING HTMLUNIT DRIVER***--------------");
+			capabilities = new DesiredCapabilities();
+			capabilities.setBrowserName("htmlunit");
+			capabilities.setJavascriptEnabled(true);
+			System.out.println("-----------checking in HTMLUNIT_DRIVER-------");
+			
+			/*WebClient webClient = new WebClient(BrowserVersion.getDefault());
+			webClient.getOptions().setJavaScriptEnabled(true);
+			webClient.getOptions().setCssEnabled(false);
+			webClient.getOptions().setRedirectEnabled(true);
+			webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+			webClient.getCookieManager().setCookiesEnabled(true);
+			*/
+		}
+		else {
 			throw new ScreenException(
 					"------Only FireFox,InternetExplore and Chrome works-----------");
 		}
@@ -176,7 +191,7 @@ public class BaseScreen {
 			// break;
 		}
 		driver = new RemoteWebDriver(server, capabilities);
-		windowResize();
+		//windowResize();
 		driver.get(applicationURL + applicationContext);
 		// driver.manage().window().maximize();
 		// driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -328,9 +343,11 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
+		System.out.println("Clicking Browse button");
 		waitForElementPresent(uiConstants.BROWSE, methodName);
 		getXpathWebElement(uiConstants.BROWSE);
 		element.click();
+		System.out.println("Browse passed");
 
 	}
 	public void clickOnBrowseTab(String methodName) throws IOException, Exception {
@@ -408,6 +425,7 @@ public class BaseScreen {
 		getXpathWebElement(uiConstants.AUDIO_PROD1_DETAILS);
 		element.click();
 		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		System.out.println(" passed");
 
 	}
 

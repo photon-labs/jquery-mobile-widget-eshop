@@ -1,13 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <environment>
-           <Browser>firefox</Browser>
-		   <Server>
-               <context>mobilewidget</context>
-               <protocol>http</protocol>
-               <host>172.16.17.180</host>
-               <port>8080</port>
-               <Resolution></Resolution>
-               
-           </Server>
+           <Browser/>
+		   
            
+<Resolution>320x480</Resolution>
+    
+<Server desc="server" name="Server">
+        <context>JqueryEshop</context>
+        <admin_username/>
+        <deploy_dir>C:\apache-tomcat-7.0.34\webapps</deploy_dir>
+        <additional_context/>
+        <port>8080</port>
+        <admin_password/>
+        <version>7.0.x</version>
+        <certificate/>
+        <type>Apache Tomcat</type>
+        <remoteDeployment>false</remoteDeployment>
+        <host>localhost</host>
+        <protocol>http</protocol>
+    </Server>
 </environment>
