@@ -81,7 +81,7 @@
 				<warFile>${project.basedir}/do_not_checkin/build/temp/${project.build.finalName}.war</warFile>
 			</configuration>
             </plugin>
-		<!-- <plugin>
+		<plugin>
 				<groupId>net.awired.jstest</groupId>
 				<artifactId>jstest-maven-plugin</artifactId>
 				<version>2.0.0.25003-SNAPSHOT</version>
@@ -100,7 +100,7 @@
 						<sourceExclude>eshop/widgets/Init.js</sourceExclude>
 					</sourceExcludes>
 				</configuration>
-			</plugin> -->
+			</plugin>
 		    <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>yuicompressor-maven-plugin</artifactId>
