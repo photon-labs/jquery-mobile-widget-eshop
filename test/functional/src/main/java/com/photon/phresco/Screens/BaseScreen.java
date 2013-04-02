@@ -177,17 +177,23 @@ public class BaseScreen {
 			capabilities.setJavascriptEnabled(true);
 			System.out.println("-----------checking in HTMLUNIT_DRIVER-------");
 			
-			/*WebClient webClient = new WebClient(BrowserVersion.getDefault());
-			webClient.getOptions().setJavaScriptEnabled(true);
-			webClient.getOptions().setCssEnabled(false);
-			webClient.getOptions().setRedirectEnabled(true);
-			webClient.setAjaxController(new NicelyResynchronizingAjaxController());
-			webClient.getCookieManager().setCookiesEnabled(true);
-			*/
+		}else if (selectedBrowser.equalsIgnoreCase(Constants.IPHONE_WEBDRIVER)) {
+			try{
+			log.info("-------------***LAUNCHING iPhoneWebDriver***--------------");
+			capabilities = new DesiredCapabilities();
+			capabilities.setBrowserName("iPhone");
+			capabilities.setJavascriptEnabled(true);
+			System.out.println("-----------Checking in iPhoneWebDriver-------");
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
 		}
+    }
+		
 		else {
 			throw new ScreenException(
-					"------Only FireFox,InternetExplore and Chrome works-----------");
+					"------Only FireFox,InternetExplore ,Chrome,HTML and iphoneWebdriver works-----------");
 		}
 
 		/**
@@ -209,7 +215,8 @@ public class BaseScreen {
 		}
 		driver = new RemoteWebDriver(server, capabilities);
 		//windowResize();
-		driver.get(applicationURL + applicationContext);
+		driver.navigate().to(applicationURL + applicationContext);
+		//driver.get(applicationURL + applicationContext);
 		// driver.manage().window().maximize();
 		// driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
