@@ -24,7 +24,7 @@
 
            <links>
                <browseWidget>//img[@src='images/eshop/browse_icon.png']</browseWidget>
-               <browseWidgetTab>//a[contains(text(),'Browse')]</browseWidgetTab>
+               <browseWidgetTab>//div[contains(text(),'Browse')]</browseWidgetTab>
                <login>//img[@src='images/eshop/loginicon.png']</login>
                <register>//img[@src='images/eshop/register_icon.png']</register>
            </links>
@@ -42,6 +42,7 @@
 	           <mp3Playerstab>//a/span[contains(text(),'MP3 Players')]</mp3Playerstab>
 	           <accessoriestab>//a/span[contains(text(),'Accessories')]</accessoriestab>
 	           <moretab>link=More</moretab>
+	           <homeIcon>//li[@class='home']</homeIcon>
 	       </tabs>
 	       <productPage>
 	           <browsepgBackButton>//div[@id='header']/div/div/a/div/p</browsepgBackButton>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 
-    PHR_html_jquery_mobileapp
+    PHR_HTML5YUIWidget
 
     Copyright (C) 1999-2013 Photon Infotech Inc.
 
@@ -18,10 +19,10 @@
     limitations under the License.
 
 -->
-<environment>
-<phresco>
-<mobilewidget>
-               
+
+<jquerymobilewidgets>
+
+      <mobilewidget>               
 	           <billInfoEmailValue>Phresco@photoninfotech.net</billInfoEmailValue>
 	           <billInfoFirstNameValue>John</billInfoFirstNameValue>
 	           <billInfoLastNameValue>David</billInfoLastNameValue>
@@ -32,8 +33,22 @@
 	           <billInfoStateValue>Boston</billInfoStateValue>
 	           <billInfoPostCodeValue>10019</billInfoPostCodeValue>
 	           <billInfoPhoneNumberValue>+1 212-398-2449</billInfoPhoneNumberValue>
-	           <billInfoCommentsValue>First order</billInfoCommentsValue>
-			   
-</mobilewidget>
-</phresco>
-</environment>
+	           <billInfoCommentsValue>First order</billInfoCommentsValue>			   
+      </mobilewidget>
+      
+       <mobilewidget>               
+	           <billInfoEmailValue>Photon@photoninfotech.net</billInfoEmailValue>
+	           <billInfoFirstNameValue>David</billInfoFirstNameValue>
+	           <billInfoLastNameValue>John</billInfoLastNameValue>
+	           <billInfoCompanyValue>Photon</billInfoCompanyValue>
+	           <billInfoAddress1Value>200 E MAIN ST PHOENIX AZ</billInfoAddress1Value>
+	           <billInfoAddress2Value>421 E DRACHMAN TUCSON AZ</billInfoAddress2Value>
+	           <billInfoCityValue>SEATTLE WA</billInfoCityValue>
+	           <billInfoStateValue>Boston</billInfoStateValue>
+	           <billInfoPostCodeValue>20019</billInfoPostCodeValue>
+	           <billInfoPhoneNumberValue>+1 212-398-2449</billInfoPhoneNumberValue>
+	           <billInfoCommentsValue>second order</billInfoCommentsValue>			   
+      </mobilewidget>
+      
+
+</jquerymobilewidgets>
