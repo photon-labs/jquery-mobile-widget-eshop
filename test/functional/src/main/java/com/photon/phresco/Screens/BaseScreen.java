@@ -26,8 +26,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -43,6 +41,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -50,6 +49,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.google.common.base.Function;
+import com.photon.phresco.model.Jquerymobilewidgets;
+import com.photon.phresco.model.Jquerymobilewidgets.Mobilewidget;
 import com.photon.phresco.selenium.util.Constants;
 import com.photon.phresco.selenium.util.GetCurrentDir;
 import com.photon.phresco.selenium.util.ScreenActionFailedException;
@@ -70,7 +71,6 @@ public class BaseScreen {
 	private WidgetData widgetData;
 	private PhrescoUiConstants phrescoUiConstants;
 	DesiredCapabilities capabilities;
-	
 
 	// private Log log = LogFactory.getLog(getClass());
 
@@ -78,17 +78,19 @@ public class BaseScreen {
 
 	}
 
-	public BaseScreen(String selectedBrowser,String selectedPlatform, String applicationURL,
-			String applicationContext, UserInfoConstants userInfoConstants,
-			UIConstants uiConstants, WidgetData widgetData,PhrescoUiConstants phrescoUiConstants)
-					throws AWTException, IOException, ScreenActionFailedException {
+	public BaseScreen(String selectedBrowser, String selectedPlatform,
+			String applicationURL, String applicationContext,
+			UserInfoConstants userInfoConstants, UIConstants uiConstants,
+			WidgetData widgetData, PhrescoUiConstants phrescoUiConstants)
+			throws AWTException, IOException, ScreenActionFailedException {
 
 		this.userInfoConstants = userInfoConstants;
 		this.uiConstants = uiConstants;
 		this.widgetData = widgetData;
-		this.phrescoUiConstants=phrescoUiConstants;
+		this.phrescoUiConstants = phrescoUiConstants;
 		try {
-			instantiateBrowser(selectedBrowser,selectedPlatform, applicationURL, applicationContext);
+			instantiateBrowser(selectedBrowser, selectedPlatform,
+					applicationURL, applicationContext);
 		} catch (ScreenException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,11 +98,10 @@ public class BaseScreen {
 
 	}
 
-	public void instantiateBrowser(String selectedBrowser,String selectedPlatform,
-			String applicationURL, String applicationContext)
-					 throws ScreenException,
-						MalformedURLException  {
-
+	public void instantiateBrowser(String selectedBrowser,
+			String selectedPlatform, String applicationURL,
+			String applicationContext) throws ScreenException,
+			MalformedURLException {
 
 		URL server = new URL("http://localhost:4444/wd/hub/");
 		if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_CHROME)) {
@@ -131,37 +132,36 @@ public class BaseScreen {
 				capabilities = new DesiredCapabilities();
 				capabilities.setJavascriptEnabled(true);
 				capabilities.setBrowserName("iexplorer");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-			
-			else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_OPERA)) {
-				log.info("-------------***LAUNCHING OPERA***--------------");
-				try {
-					
+
+		else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_OPERA)) {
+			log.info("-------------***LAUNCHING OPERA***--------------");
+			try {
+
 				capabilities = new DesiredCapabilities();
 				capabilities.setBrowserName("opera");
-				capabilities.setCapability("opera.autostart ",true);
+				capabilities.setCapability("opera.autostart ", true);
 
 				System.out.println("-----------checking the OPERA-------");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		
-		} 
-			else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_SAFARI)) {
-				log.info("-------------***LAUNCHING SAFARI***--------------");
-				try {
-					
-			    capabilities = new DesiredCapabilities();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_SAFARI)) {
+			log.info("-------------***LAUNCHING SAFARI***--------------");
+			try {
+
+				capabilities = new DesiredCapabilities();
 				capabilities.setBrowserName("safari");
 				capabilities.setCapability("safari.autostart ", true);
 				System.out.println("-----------checking the SAFARI-------");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+
 		} else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_FIREFOX)) {
 			log.info("-------------***LAUNCHING FIREFOX***--------------");
 			capabilities = new DesiredCapabilities();
@@ -170,27 +170,26 @@ public class BaseScreen {
 			// break;
 			// driver = new RemoteWebDriver(server, capabilities);
 
-		}else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_HEADLESS)) {
+		} else if (selectedBrowser.equalsIgnoreCase(Constants.BROWSER_HEADLESS)) {
 			log.info("-------------***LAUNCHING HTMLUNIT DRIVER***--------------");
 			capabilities = new DesiredCapabilities();
 			capabilities.setBrowserName("htmlunit");
 			capabilities.setJavascriptEnabled(true);
 			System.out.println("-----------checking in HTMLUNIT_DRIVER-------");
-			
-		}else if (selectedBrowser.equalsIgnoreCase(Constants.IPHONE_WEBDRIVER)) {
-			try{
-			log.info("-------------***LAUNCHING iPhoneWebDriver***--------------");
-			capabilities = new DesiredCapabilities();
-			capabilities.setBrowserName("iPhone");
-			capabilities.setJavascriptEnabled(true);
-			System.out.println("-----------Checking in iPhoneWebDriver-------");
-			}
-			catch (Exception e)
-			{
+
+		} else if (selectedBrowser.equalsIgnoreCase(Constants.IPHONE_WEBDRIVER)) {
+			try {
+				log.info("-------------***LAUNCHING iPhoneWebDriver***--------------");
+				capabilities = new DesiredCapabilities();
+				capabilities.setBrowserName("iPhone");
+				capabilities.setJavascriptEnabled(true);
+				System.out
+						.println("-----------Checking in iPhoneWebDriver-------");
+			} catch (Exception e) {
 				e.printStackTrace();
+			}
 		}
-    }
-		
+
 		else {
 			throw new ScreenException(
 					"------Only FireFox,InternetExplore ,Chrome,HTML and iphoneWebdriver works-----------");
@@ -214,31 +213,28 @@ public class BaseScreen {
 			// break;
 		}
 		driver = new RemoteWebDriver(server, capabilities);
-		//windowResize();
+		// windowResize();
 		driver.navigate().to(applicationURL + applicationContext);
-		//driver.get(applicationURL + applicationContext);
+		// driver.get(applicationURL + applicationContext);
 		// driver.manage().window().maximize();
 		// driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 	}
-	
-	public  void windowResize()
-	{
-	
-	String resolution =phrescoUiConstants.RESOLUTION;
-	if(resolution!=null)
-	{
+
+	public void windowResize() {
+
+		String resolution = phrescoUiConstants.getResolution();
+		if (resolution != null) {
 			String[] tokens = resolution.split("x");
-			String resolutionX=tokens[0];
-			String resolutionY=tokens[1];
-			int x= Integer.parseInt(resolutionX);
-			int y= Integer.parseInt(resolutionY);
-			Dimension screenResolution = new Dimension(x,y);
+			String resolutionX = tokens[0];
+			String resolutionY = tokens[1];
+			int x = Integer.parseInt(resolutionX);
+			int y = Integer.parseInt(resolutionY);
+			Dimension screenResolution = new Dimension(x, y);
 			driver.manage().window().setSize(screenResolution);
-	}
-	else{
-	driver.manage().window().maximize();
-	}
+		} else {
+			driver.manage().window().maximize();
+		}
 	}
 
 	/*
@@ -332,20 +328,27 @@ public class BaseScreen {
 			log.info("Entering:--------waitForElementPresent()--------");
 			By by = By.xpath(locator);
 			WebDriverWait wait = new WebDriverWait(driver, 40);
-			log.info("Waiting:--------Wait for Element----------> "+locator);
+			log.info("Waiting:--------Wait for Element----------> " + locator);
 			wait.until(presenceOfElementLocated(by));
 		}
 
 		catch (Exception e) {
-			/*File scrFile = ((TakesScreenshot) driver)
+			log.info("presenceOfElementLocated" + e.getMessage());
+
+			WebDriver augmentedDriver = new Augmenter().augment(driver);
+			File screenshot = ((TakesScreenshot) augmentedDriver)
 					.getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(scrFile,
-					new File(GetCurrentDir.getCurrentDirectory() + "\\"
-							+ methodName + ".png"));
-			throw new RuntimeException("waitForElementPresent"
-					+ super.getClass().getSimpleName() + " failed", e);*/
+
+			try {
+
+				FileUtils.copyFile(screenshot,
+						new File(GetCurrentDir.getCurrentDirectory() + "\\"
+								+ methodName + ".png"));
+			} catch (Exception e1) {
+				log.info("presenceOfElementLocated" + e1.getMessage());
+			}
 			Assert.assertNull(e);
-			
+
 		}
 	}
 
@@ -368,20 +371,22 @@ public class BaseScreen {
 			;
 		}
 		System.out.println("Clicking Browse button");
-		waitForElementPresent(uiConstants.BROWSE, methodName);
-		getXpathWebElement(uiConstants.BROWSE);
+		waitForElementPresent(uiConstants.getBrowse(), methodName);
+		getXpathWebElement(uiConstants.getBrowse());
 		element.click();
 		System.out.println("Browse passed");
 
 	}
-	public void clickOnBrowseTab(String methodName) throws IOException, Exception {
+
+	public void clickOnBrowseTab(String methodName) throws IOException,
+			Exception {
 		if (StringUtils.isEmpty(methodName)) {
 			methodName = Thread.currentThread().getStackTrace()[1]
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.BROWSE_TAB, methodName);
-		getXpathWebElement(uiConstants.BROWSE_TAB);
+		waitForElementPresent(uiConstants.getBrowseTab(), methodName);
+		getXpathWebElement(uiConstants.getBrowseTab());
 		element.click();
 
 	}
@@ -392,13 +397,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.TELEVISION, methodName);
-		getXpathWebElement(uiConstants.TELEVISION);
+		waitForElementPresent(uiConstants.getTelevision(), methodName);
+		getXpathWebElement(uiConstants.getTelevision());
 		element.click();
-		waitForElementPresent(uiConstants.TELE_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.TELE_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getTeleProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getTeleProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
 
@@ -408,13 +413,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.COMPUTERS, methodName);
-		getXpathWebElement(uiConstants.COMPUTERS);
+		waitForElementPresent(uiConstants.getComputers(), methodName);
+		getXpathWebElement(uiConstants.getComputers());
 		element.click();
-		waitForElementPresent(uiConstants.COMP_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.COMP_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getCompProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getCompProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
 
@@ -424,13 +429,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.MOBILE, methodName);
-		getXpathWebElement(uiConstants.MOBILE);
+		waitForElementPresent(uiConstants.getMobile(), methodName);
+		getXpathWebElement(uiConstants.getMobile());
 		element.click();
-		waitForElementPresent(uiConstants.MOBILE_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.MOBILE_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getMobileProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getMobileProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
 
@@ -440,15 +445,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		System.out
-				.println("-----------------*********--------------------------");
-		waitForElementPresent(uiConstants.AUDIO_DEVICES, methodName);
-		getXpathWebElement(uiConstants.AUDIO_DEVICES);
+		waitForElementPresent(uiConstants.getAudioDevice(), methodName);
+		getXpathWebElement(uiConstants.getAudioDevice());
 		element.click();
-		waitForElementPresent(uiConstants.AUDIO_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.AUDIO_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getAudioProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getAudioProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 		System.out.println(" passed");
 
 	}
@@ -459,13 +462,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.CAMERAS, methodName);
-		getXpathWebElement(uiConstants.CAMERAS);
+		waitForElementPresent(uiConstants.getCamera(), methodName);
+		getXpathWebElement(uiConstants.getCamera());
 		element.click();
-		waitForElementPresent(uiConstants.CAMERAS_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.CAMERAS_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getCamerasProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getCamerasProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
 
@@ -475,13 +478,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.TABLETS, methodName);
-		getXpathWebElement(uiConstants.TABLETS);
+		waitForElementPresent(uiConstants.getTablets(), methodName);
+		getXpathWebElement(uiConstants.getTablets());
 		element.click();
-		waitForElementPresent(uiConstants.TABLETS_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.TABLETS_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getTabletsProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getTabletsProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
 
@@ -491,13 +494,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.MOVIESnMUSIC, methodName);
-		getXpathWebElement(uiConstants.MOVIESnMUSIC);
+		waitForElementPresent(uiConstants.getMovieAndMusic(), methodName);
+		getXpathWebElement(uiConstants.getMovieAndMusic());
 		element.click();
-		waitForElementPresent(uiConstants.MnM_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.MnM_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getmAndMProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getmAndMProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
 
@@ -507,13 +510,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.VIDEOGAMES, methodName);
-		getXpathWebElement(uiConstants.VIDEOGAMES);
+		waitForElementPresent(uiConstants.getVideoGame(), methodName);
+		getXpathWebElement(uiConstants.getVideoGame());
 		element.click();
-		waitForElementPresent(uiConstants.VIDGAMES_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.VIDGAMES_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getVideoGameProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getVideoGameProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
 
@@ -523,13 +526,13 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.MP3PLAYERS, methodName);
-		getXpathWebElement(uiConstants.MP3PLAYERS);
+		waitForElementPresent(uiConstants.getMp3Player(), methodName);
+		getXpathWebElement(uiConstants.getMp3Player());
 		element.click();
-		waitForElementPresent(uiConstants.MP3_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.MP3_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getMp3Prod1Det(), methodName);
+		getXpathWebElement(uiConstants.getMp3Prod1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
 
@@ -539,85 +542,116 @@ public class BaseScreen {
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.ACCESSORIES, methodName);
-		getXpathWebElement(uiConstants.ACCESSORIES);
+		waitForElementPresent(uiConstants.getAccessories(), methodName);
+		getXpathWebElement(uiConstants.getAccessories());
 		element.click();
-		waitForElementPresent(uiConstants.ACC_PROD1_DETAILS, methodName);
-		getXpathWebElement(uiConstants.ACC_PROD1_DETAILS);
+		waitForElementPresent(uiConstants.getAccProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getAccProd1Det());
 		element.click();
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
 
 	}
-
-	public void BillingInfo(String methodName) throws Exception {
+	
+	public void Failure(String methodName) throws Exception {
 		if (StringUtils.isEmpty(methodName)) {
 			methodName = Thread.currentThread().getStackTrace()[1]
 					.getMethodName();
 			;
 		}
-		waitForElementPresent(uiConstants.ADDTOCART, methodName);
-		getXpathWebElement(uiConstants.ADDTOCART);
+		waitForElementPresent(uiConstants.getAccProd1Det(), methodName);
+		getXpathWebElement(uiConstants.getAccProd1Det());
 		element.click();
-		/*waitForElementPresent(uiConstants.UPDATECART, methodName);
-		getXpathWebElement(uiConstants.UPDATECART);
-		element.click();*/
-		waitForElementPresent(uiConstants.CHECKOUT, methodName);
-		getXpathWebElement(uiConstants.CHECKOUT);
+		
+
+	}
+
+	public void BillingInfo(String methodName, Mobilewidget mobilewidget)
+			throws Exception {
+
+		if (StringUtils.isEmpty(methodName)) {
+			methodName = Thread.currentThread().getStackTrace()[1]
+					.getMethodName();
+			;
+		}
+		waitForElementPresent(uiConstants.getAddToCart(), methodName);
+		getXpathWebElement(uiConstants.getAddToCart());
 		element.click();
-		waitForElementPresent(uiConstants.CUSTOMERINFORMATION, methodName);
-		getXpathWebElement(uiConstants.CUSTOMERINFORMATION);
+		/*
+		 * waitForElementPresent(uiConstants.UPDATECART, methodName);
+		 * getXpathWebElement(uiConstants.UPDATECART); element.click();
+		 */
+		waitForElementPresent(uiConstants.getCheckOut(), methodName);
+		getXpathWebElement(uiConstants.getCheckOut());
+		element.click();
+		waitForElementPresent(uiConstants.getCustomerInformation(), methodName);
+		getXpathWebElement(uiConstants.getCustomerInformation());
 		element.click();
 		Thread.sleep(2000);
-	//	waitForElementPresent(uiConstants.EMAIL, methodName);
-		getIdWebElement(uiConstants.EMAIL);
+		// waitForElementPresent(uiConstants.EMAIL, methodName);
+		getIdWebElement(uiConstants.getEmail());
 		element.click();
-		element.clear();		
-		element.sendKeys(this.widgetData.EMAIL_VALUE);
-		waitForElementPresent(uiConstants.DELIVERYINFO, methodName);
-		getXpathWebElement(uiConstants.DELIVERYINFO);
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoEmailValue());
+		Thread.sleep(2000);
+		waitForElementPresent(uiConstants.getDeliveryInfo(), methodName);
+		getXpathWebElement(uiConstants.getDeliveryInfo());
 		element.click();
-		getIdWebElement(uiConstants.FIRSTNAME);
-		element.sendKeys(this.widgetData.FIRSTNAME_VALUE);
-		getIdWebElement(uiConstants.LASTNAME);
-		element.sendKeys(this.widgetData.LASTNAME_VALUE);
-		getIdWebElement(uiConstants.COMPANY);
-		element.sendKeys(this.widgetData.COMPANY_VALUE);
-		getIdWebElement(uiConstants.ADDRESS1);
-		element.sendKeys(this.widgetData.ADDRESS1_VALUE);
-		getIdWebElement(uiConstants.ADDRESS2);
-		element.sendKeys(this.widgetData.ADDRESS2_VALUE);
-		getIdWebElement(uiConstants.CITY);
-		element.sendKeys(this.widgetData.CITY_VALUE);
-		getIdWebElement(uiConstants.STATE);
-		element.sendKeys(this.widgetData.STATE_VALUE);
-		getIdWebElement(uiConstants.POSTCODE);
-		element.sendKeys(this.widgetData.POSTALCODE_VALUE);
-		getIdWebElement(uiConstants.PHONENUMBER);
-		element.sendKeys(this.widgetData.PHONENUMBER_VALUE);
-		waitForElementPresent(uiConstants.BILLINGINFO, methodName);
-		getXpathWebElement(uiConstants.BILLINGINFO);
+		getIdWebElement(uiConstants.getFirstname());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoFirstNameValue());
+		getIdWebElement(uiConstants.getLastname());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoLastNameValue());
+		getIdWebElement(uiConstants.getCompany());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoCompanyValue());
+		getIdWebElement(uiConstants.getAddress1());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoAddress1Value());
+		getIdWebElement(uiConstants.getAddress2());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoAddress2Value());
+		Thread.sleep(2000);
+		getIdWebElement(uiConstants.getCity());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoCityValue());
+		getIdWebElement(uiConstants.getState());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoStateValue());
+		getIdWebElement(uiConstants.getPostcode());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoPostCodeValue());
+		getIdWebElement(uiConstants.getPhoneNumber());
+		element.clear();
+		element.sendKeys(mobilewidget.getBillInfoPhoneNumberValue());
+		waitForElementPresent(uiConstants.getBillingInfo(), methodName);
+		getXpathWebElement(uiConstants.getBillingInfo());
 		element.click();
 		Thread.sleep(5000);
-		waitForElementPresent(uiConstants.CHECKADDRESS, methodName);
-		getXpathWebElement(uiConstants.CHECKADDRESS);
+		waitForElementPresent(uiConstants.getCheckAddress(), methodName);
+		getXpathWebElement(uiConstants.getCheckAddress());
 		element.click();
-		waitForElementPresent(uiConstants.PAYMENTMETHODS, methodName);
-		getXpathWebElement(uiConstants.PAYMENTMETHODS);
+		waitForElementPresent(uiConstants.getPaymentMethod(), methodName);
+		getXpathWebElement(uiConstants.getPaymentMethod());
 		element.click();
-		/*waitForElementPresent(uiConstants.CASHONDELIVERY, methodName);
-		getXpathWebElement(uiConstants.CASHONDELIVERY);
-		element.click();*/
-		waitForElementPresent(uiConstants.ORDERCOMMENTS, methodName);
-		getXpathWebElement(uiConstants.ORDERCOMMENTS);
+		/*
+		 * waitForElementPresent(uiConstants.CASHONDELIVERY, methodName);
+		 * getXpathWebElement(uiConstants.CASHONDELIVERY); element.click();
+		 */
+		waitForElementPresent(uiConstants.getOrderComments(), methodName);
+		getXpathWebElement(uiConstants.getOrderComments());
 		element.click();
-		getIdWebElement(uiConstants.GIVECOMMENTS);
-		element.sendKeys(this.widgetData.ORDERCOMMENTS_VALUE);
-		waitForElementPresent(uiConstants.REVIEWORDER, methodName);
-		getXpathWebElement(uiConstants.REVIEWORDER);
+		getIdWebElement(uiConstants.getGiveComments());
+		element.sendKeys(mobilewidget.getBillInfoCommentsValue());
+		waitForElementPresent(uiConstants.getReviewOrder(), methodName);
+		getXpathWebElement(uiConstants.getReviewOrder());
 		element.click();
-		waitForElementPresent(uiConstants.SUBMITORDER, methodName);
-		getXpathWebElement(uiConstants.SUBMITORDER);
-		Thread.sleep(2000);
+		waitForElementPresent(uiConstants.getSubmitorder(), methodName);
+		getXpathWebElement(uiConstants.getSubmitorder());
+		Thread.sleep(3000);
+		waitForElementPresent(uiConstants.getHomeIcon(), methodName);
+		getXpathWebElement(uiConstants.getHomeIcon());
+		Thread.sleep(3000);
 		element.click();
 	}
 
@@ -642,18 +676,18 @@ public class BaseScreen {
 		log.info("Entering:********clear operation end********");
 
 	}
+
 	public void isTextPresent(String text) {
-		if (text!= null){
-		boolean value=driver.findElement(By.tagName("body")).getText().contains(text);	
-		Assert.assertTrue(value);   
-	    
-	    }
-		else
-		{
+		if (text != null) {
+			boolean value = driver.findElement(By.tagName("body")).getText()
+					.contains(text);
+			Assert.assertTrue(value);
+
+		} else {
 			throw new RuntimeException("---- Text not existed----");
 		}
-	    
-	}	
+
+	}
 
 	public void sendKeys(String text) throws ScreenException {
 		log.info("Entering:********enterText operation start********");
@@ -661,7 +695,8 @@ public class BaseScreen {
 			clear();
 			element.sendKeys(text);
 		} catch (Throwable t) {
-			t.printStackTrace();		}
+			t.printStackTrace();
+		}
 		log.info("Entering:********enterText operation end********");
 	}
 
