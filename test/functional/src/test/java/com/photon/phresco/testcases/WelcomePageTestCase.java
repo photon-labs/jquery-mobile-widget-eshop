@@ -252,7 +252,7 @@ public class WelcomePageTestCase {
 		}
 	}
 
-	@Test
+/*	@Test
 	public void testFailureScript()
 			throws InterruptedException, IOException, Exception {
 		try {
@@ -264,7 +264,7 @@ public class WelcomePageTestCase {
 
 		}
 	}
-
+*/
 	@AfterTest
 	public void tearDown() {
 		welcomeScreen.closeBrowser();

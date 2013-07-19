@@ -22,7 +22,7 @@
 	thread-count="5" verbose="3">
 
    
-	<test name="VerifyWelcomePageOnFirefox" junit="false"
+ 	<test name="VerifyWelcomePageOnFirefox" junit="false"
 		preserve-order="true">
 		<parameter name="jqueryMobilewidgetdataXml" value="/WidgetData.xml" />
 		<parameter name="browser" value="firefox" />
@@ -30,7 +30,7 @@
 		<classes>
 			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
 		</classes>
-	</test>
+	</test> 
 	<test name="VerifyWelcomePageOnGooglechrome" junit="false"
 		preserve-order="true">
 		<parameter name="jqueryMobilewidgetdataXml" value="/WidgetData.xml" />
@@ -40,7 +40,7 @@
 			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
 		</classes>
 	</test> 
-	<test name="VerifyWelcomePageOniPhoneWebdriver" junit="false"
+<!-- 	<test name="VerifyWelcomePageOniPhoneWebdriver" junit="false"
 		preserve-order="true">
 	    <parameter name="jqueryMobilewidgetdataXml" value="/WidgetData.xml" />
 		<parameter name="browser" value="iPhone" />
@@ -48,7 +48,7 @@
 		<classes>
 			<class name="com.photon.phresco.testcases.WelcomePageTestCase" />
 		</classes>                                                                                  
-	</test>
+	</test> -->
 	
 		
 </suite>
