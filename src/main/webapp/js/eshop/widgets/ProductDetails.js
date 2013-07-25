@@ -97,7 +97,7 @@ define( "eshop/widgets/ProductDetails", [ "jquery", "framework/Clazz", "framewor
             data.productId = productDetails.id;
             self.productReview(reviewA, self, data.productId, data);
 
-			addToCartA = $('<a ><img src="images/eshop/add_cart.png" border="0" title="image" /></a>');
+			addToCartA = $('<a href="#" id="Addtocart"><img src="images/eshop/add_cart.png" border="0" title="image" /></a>');
 			btnHolder.append(reviewA);
 			btnHolder.append(addToCartA);
 			pdLeftHolder.append(btnHolder);

@@ -92,7 +92,7 @@ define( "eshop/widgets/ShoppingCart", [ "jquery", "framework/Clazz", "framework/
         mycart_btn =  $('<div class="mycart_btn">');
         mycart_update_view_bu1 =  $('<div class="mycart_update_view_bu">');
 		if(self.phrescoapi.productArray.length !== 0){
-			mycart_mid_bu1 =  $('<div class="mycart_mid_bu"><a >Check Out</a></div>');
+			mycart_mid_bu1 =  $('<div id="checkoutid" class="mycart_mid_bu"><a >Check Out</a></div>');
 			$(mycart_mid_bu1).bind('click', {} , function(event){
 				self.phrescoapi.priceCount();
 				self.hideItems = ['ShoppingCart'];

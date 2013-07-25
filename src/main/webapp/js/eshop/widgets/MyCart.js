@@ -52,7 +52,7 @@ define( "eshop/widgets/MyCart", [ "jquery", "framework/Clazz", "framework/Widget
         myCartSubTotal = $('<div class="mycart_subtotal">Subtotal: $200</div>');
         myCartButton = $('<div class="mycart_btn">');
         myCartButtonMid = $('<div class="mycart_btn_mid">');
-        myCartCheckOut = $('<div class="mycart_mid_bu"><a href="#">Checkout</a></div>');
+        myCartCheckOut = $('<div id="checkoutid" class="mycart_mid_bu"><a href="#">Checkout</a></div>');
         
         $(myCartCheckOut).bind('click', {} , function(event){
 			self.hideItems = ['Menu','Login', 'ProductDetails', 'Register', 'Category', 'LoginSuccess','OrderFormView','OrderSuccess','MyCart'];
