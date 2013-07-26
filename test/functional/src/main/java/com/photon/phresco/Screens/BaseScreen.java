@@ -175,6 +175,7 @@ public class BaseScreen {
 			capabilities.setCapability(CapabilityType.PLATFORM, Platform.MAC);
 		}
 		driver = new RemoteWebDriver(server, capabilities);
+		windowResize();
 		driver.navigate().to(applicationURL + applicationContext);
 
 	}
