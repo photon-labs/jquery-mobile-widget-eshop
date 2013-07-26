@@ -21,7 +21,8 @@ import java.io.File;
 
 public class GetCurrentDir {
 
-	public static String targetDirectory = "/target" + "/surefire-reports" + "/ScreenShots";
+	public static String targetDirectory = "/target" + "/surefire-reports"
+			+ "/screenshots";
 	public static String currentdir;
 	public static String screenShotFolder;
 	public static File fileName;
@@ -31,12 +32,12 @@ public class GetCurrentDir {
 		currentdir = System.getProperty("user.dir");
 		screenShotFolder = currentdir + targetDirectory;
 		fileName = new File(screenShotFolder);
-		if(fileName.exists()){
-			System.out.println("folder structure "+fileName+"exists");	
-			}else{
-				fileName.mkdir();
-				System.out.println("folder structure "+fileName+"created");
-			}
+		if (fileName.exists()) {
+			System.out.println("folder structure " + fileName + "exists");
+		} else {
+			fileName.mkdir();
+			System.out.println("folder structure " + fileName + "created");
+		}
 		targetPath = fileName.getAbsolutePath();
 		return targetPath;
 	}
