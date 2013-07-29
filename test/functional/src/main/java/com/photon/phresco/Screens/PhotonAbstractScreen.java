@@ -22,7 +22,6 @@ import java.io.IOException;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
 import com.photon.phresco.uiconstants.UIConstants;
 import com.photon.phresco.uiconstants.UserInfoConstants;
-import com.photon.phresco.uiconstants.WidgetData;
 
 public class PhotonAbstractScreen extends BaseScreen {
 
@@ -32,10 +31,10 @@ public class PhotonAbstractScreen extends BaseScreen {
 
 	protected PhotonAbstractScreen(String selectedBrowser,String selectedPlatform, String applicationURL
 			, String applicationContext,			
-			UserInfoConstants userInfoConstants,UIConstants uiConstants, WidgetData widgetData,PhrescoUiConstants phrescoUiConstants)
+			UserInfoConstants userInfoConstants,UIConstants uiConstants, PhrescoUiConstants phrescoUiConstants)
 			throws IOException, Exception {
 		super(selectedBrowser,selectedPlatform, applicationURL, applicationContext,
-				 userInfoConstants, uiConstants, widgetData,phrescoUiConstants);
+				 userInfoConstants, uiConstants, phrescoUiConstants);
 
 	}
 }

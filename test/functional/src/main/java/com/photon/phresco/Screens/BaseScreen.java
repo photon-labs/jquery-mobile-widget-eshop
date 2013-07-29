@@ -51,7 +51,6 @@ import com.photon.phresco.selenium.util.ScreenException;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
 import com.photon.phresco.uiconstants.UIConstants;
 import com.photon.phresco.uiconstants.UserInfoConstants;
-import com.photon.phresco.uiconstants.WidgetData;
 
 @SuppressWarnings("unused")
 public class BaseScreen {
@@ -62,10 +61,8 @@ public class BaseScreen {
 	private WebElement element;
 	private UserInfoConstants userInfoConstants;
 	private UIConstants uiConstants;
-	private WidgetData widgetData;
 	private PhrescoUiConstants phrescoUiConstants;
 	DesiredCapabilities capabilities;
-
 
 	public BaseScreen() {
 
@@ -74,12 +71,11 @@ public class BaseScreen {
 	public BaseScreen(String selectedBrowser, String selectedPlatform,
 			String applicationURL, String applicationContext,
 			UserInfoConstants userInfoConstants, UIConstants uiConstants,
-			WidgetData widgetData, PhrescoUiConstants phrescoUiConstants)
-			throws AWTException, IOException, ScreenActionFailedException {
+			PhrescoUiConstants phrescoUiConstants) throws AWTException,
+			IOException, ScreenActionFailedException {
 
 		this.userInfoConstants = userInfoConstants;
 		this.uiConstants = uiConstants;
-		this.widgetData = widgetData;
 		this.phrescoUiConstants = phrescoUiConstants;
 		try {
 			instantiateBrowser(selectedBrowser, selectedPlatform,
@@ -650,25 +646,25 @@ public class BaseScreen {
 		sendKeys(mobilewidget.getBillInfoFirstNameValue());
 		waitForElementPresent(uiConstants.getLastname(), methodName);
 		getXpathWebElement(uiConstants.getLastname());
-		sendKeys(mobilewidget.getBillInfoLastNameValue());		
+		sendKeys(mobilewidget.getBillInfoLastNameValue());
 		waitForElementPresent(uiConstants.getCompany(), methodName);
 		getXpathWebElement(uiConstants.getCompany());
-		sendKeys(mobilewidget.getBillInfoCompanyValue());		
+		sendKeys(mobilewidget.getBillInfoCompanyValue());
 		waitForElementPresent(uiConstants.getAddress1(), methodName);
 		getXpathWebElement(uiConstants.getAddress1());
-		sendKeys(mobilewidget.getBillInfoAddress1Value());		
+		sendKeys(mobilewidget.getBillInfoAddress1Value());
 		waitForElementPresent(uiConstants.getAddress2(), methodName);
 		getXpathWebElement(uiConstants.getAddress2());
-		sendKeys(mobilewidget.getBillInfoAddress2Value());		
+		sendKeys(mobilewidget.getBillInfoAddress2Value());
 		waitForElementPresent(uiConstants.getCity(), methodName);
 		getXpathWebElement(uiConstants.getCity());
-		sendKeys(mobilewidget.getBillInfoCityValue());		
+		sendKeys(mobilewidget.getBillInfoCityValue());
 		waitForElementPresent(uiConstants.getState(), methodName);
 		getXpathWebElement(uiConstants.getState());
-		sendKeys(mobilewidget.getBillInfoStateValue());	
+		sendKeys(mobilewidget.getBillInfoStateValue());
 		waitForElementPresent(uiConstants.getPostcode(), methodName);
 		getXpathWebElement(uiConstants.getPostcode());
-		sendKeys(mobilewidget.getBillInfoPostCodeValue());	
+		sendKeys(mobilewidget.getBillInfoPostCodeValue());
 		waitForElementPresent(uiConstants.getPhoneNumber(), methodName);
 		getXpathWebElement(uiConstants.getPhoneNumber());
 		sendKeys(mobilewidget.getBillInfoPhoneNumberValue());
