@@ -30,7 +30,6 @@ import com.photon.phresco.model.Jquerymobilewidgets.Mobilewidget;
 import com.photon.phresco.uiconstants.PhrescoUiConstants;
 import com.photon.phresco.uiconstants.UIConstants;
 import com.photon.phresco.uiconstants.UserInfoConstants;
-import com.photon.phresco.uiconstants.WidgetData;
 
 public class WelcomePageTestCase {
 
@@ -39,7 +38,6 @@ public class WelcomePageTestCase {
 	private String methodName;
 	private UIConstants uiConstants;
 	private UserInfoConstants userInfoConstants;
-	private WidgetData widgetData;
 
 	@Parameters(value = { "browser", "platform" })
 	@BeforeTest
@@ -48,7 +46,6 @@ public class WelcomePageTestCase {
 			phrescoUiConstants = new PhrescoUiConstants();
 			userInfoConstants = new UserInfoConstants();
 			uiConstants = new UIConstants();
-			widgetData = new WidgetData();
 			String selectedBrowser = browser;
 			String selectedPlatform = platform;
 
@@ -61,7 +58,7 @@ public class WelcomePageTestCase {
 			welcomeScreen = new WelcomeScreen(selectedBrowser,
 					selectedPlatform, applicationURL,
 					phrescoUiConstants.getContext(), userInfoConstants,
-					uiConstants, widgetData, phrescoUiConstants);
+					uiConstants,  phrescoUiConstants);
 
 		} catch (Exception exception) {
 			exception.printStackTrace();
