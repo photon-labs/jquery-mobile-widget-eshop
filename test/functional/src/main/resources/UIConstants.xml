@@ -18,9 +18,8 @@
     limitations under the License.
 
 -->
-<environment>
-<phresco>
-<mobilewidget>
+
+<uiConstants>
 
            <links>
                <browseWidget>//img[@src='images/eshop/browse_icon.png']</browseWidget>
@@ -77,18 +76,16 @@
 	           <billInfoPayMethodCOD>(//input[@name=''])[3]</billInfoPayMethodCOD>
 	           <billInfoPayMethodCheqOrCash>css=input[type="radio"]</billInfoPayMethodCheqOrCash>
 	           <billInfoComments>//a[contains(text(),'Order Comments')]</billInfoComments>
-	           <billInfoEmail>email</billInfoEmail>
-	           <billInfoFirstName>deliveryfirstname</billInfoFirstName>
-	           <billInfoGiveComments>comments</billInfoGiveComments>
-	           <billInfoLastName>deliverylastname</billInfoLastName>
-	           <billInfoPhoneNumber>deliveryphonenumber</billInfoPhoneNumber>
-	           <billInfoPostCode>deliverypostcode</billInfoPostCode>
-	           <billInfoState>deliverystate</billInfoState>
-	           <billInfoCity>deliverycity</billInfoCity>
-	           <billInfoAddress2>deliveryaddress2</billInfoAddress2>
-	           <billInfoCompany>deliverycompany</billInfoCompany>
-	           <billInfoAddress1>deliveryaddress1</billInfoAddress1>
+	           <billInfoEmail>//input[@id='email']</billInfoEmail>
+	           <billInfoFirstName>//input[@id='deliveryfirstname']</billInfoFirstName>
+	           <billInfoLastName>//input[@id='deliverylastname']</billInfoLastName>
+	           <billInfoCompany>//input[@id='deliverycompany']</billInfoCompany>
+	           <billInfoAddress1>//input[@id='deliveryaddress1']</billInfoAddress1>
+	           <billInfoAddress2>//input[@id='deliveryaddress2']</billInfoAddress2>
+	           <billInfoCity>//input[@id='deliverycity']</billInfoCity>
+	           <billInfoState>//input[@id='deliverystate']</billInfoState>
+	           <billInfoPostCode>//input[@id='deliverypostcode']</billInfoPostCode>
+	           <billInfoPhoneNumber>//input[@id='deliveryphonenumber']</billInfoPhoneNumber>
+	           <billInfoGiveComments>//textarea[@id='comments']</billInfoGiveComments>
 	       </billingInfoPage>
-</mobilewidget>
-</phresco>
-</environment>
+</uiConstants>

@@ -24,17 +24,17 @@
 <Resolution>320x480</Resolution>
     
 <Server desc="server" name="Server">
-        <context>mobilewidget</context>
+        <context>jquerymobilewidget</context>
         <admin_username/>
         <deploy_dir>C:\apache-tomcat-7.0.34\webapps</deploy_dir>
         <additional_context/>
-        <port>8080</port>
+        <port>9090</port>
         <admin_password/>
         <version>7.0.x</version>
         <certificate/>
         <type>Apache Tomcat</type>
         <remoteDeployment>false</remoteDeployment>
-        <host>172.16.25.55</host>
+        <host>localhost</host>
         <protocol>http</protocol>
     </Server>
 </environment>

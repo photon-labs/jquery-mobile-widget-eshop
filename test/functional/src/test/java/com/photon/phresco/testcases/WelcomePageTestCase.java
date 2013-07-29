@@ -20,7 +20,6 @@ package com.photon.phresco.testcases;
 import java.io.IOException;
 
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -38,12 +37,9 @@ public class WelcomePageTestCase {
 	private PhrescoUiConstants phrescoUiConstants;
 	private WelcomeScreen welcomeScreen;
 	private String methodName;
-	private String selectedBrowser;
 	private UIConstants uiConstants;
 	private UserInfoConstants userInfoConstants;
 	private WidgetData widgetData;
-
-	// private Log log = LogFactory.getLog(getClass());
 
 	@Parameters(value = { "browser", "platform" })
 	@BeforeTest
@@ -59,13 +55,6 @@ public class WelcomePageTestCase {
 			methodName = Thread.currentThread().getStackTrace()[1]
 					.getMethodName();
 
-			/*
-			 * Reporter.log("Selected Browser to execute testcases--->>" +
-			 * selectedBrowser);
-			 */
-			System.out
-					.println("-----------Selected Browser to execute testcases--->>"
-							+ selectedBrowser);
 			String applicationURL = phrescoUiConstants.getProtocol() + "://"
 					+ phrescoUiConstants.getHost() + ":"
 					+ phrescoUiConstants.getPort() + "/";
@@ -84,7 +73,6 @@ public class WelcomePageTestCase {
 			IOException, Exception {
 		try {
 			Assert.assertNotNull(welcomeScreen);
-			// Thread.sleep(10000);
 		} catch (Exception t) {
 			t.printStackTrace();
 
@@ -242,7 +230,7 @@ public class WelcomePageTestCase {
 			throws InterruptedException, IOException, Exception {
 		try {
 			System.out
-					.println("---------testToVerifyTheComputersAddToCart()-------------");
+					.println(" testToVerifyTheComputersAddToCart ");
 			welcomeScreen.clickOnBrowseTab(methodName);
 			welcomeScreen.Computers(methodName);
 			welcomeScreen.BillingInfo(methodName, mobilewidget);
@@ -252,19 +240,8 @@ public class WelcomePageTestCase {
 		}
 	}
 
-/*	@Test
-	public void testFailureScript()
-			throws InterruptedException, IOException, Exception {
-		try {
-			System.out
-					.println("---------testFailureScript()-------------");
-			welcomeScreen.Failure(methodName);
-		} catch (Exception t) {
-			t.printStackTrace();
+	
 
-		}
-	}
-*/
 	@AfterTest
 	public void tearDown() {
 		welcomeScreen.closeBrowser();

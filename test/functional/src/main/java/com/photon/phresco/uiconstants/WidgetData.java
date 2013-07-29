@@ -41,7 +41,6 @@ public class WidgetData {
 	public WidgetData() {
 		try {
 			ReadXMLFile readXml = new ReadXMLFile();
-			//readXml.loadMobileWidgetData();
 			Field[] arrayOfField = this.getClass().getDeclaredFields();
 			for (Field field : arrayOfField) {
 				field.setAccessible(true);
