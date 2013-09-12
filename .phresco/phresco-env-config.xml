@@ -13,7 +13,7 @@
             <protocol>http</protocol>
             <host>localhost</host>
         </Server>
-    <WebService desc="Webservice Configuration for JQuery Mobile Widget Eshop application" name="Webservice Configuration">
+    <WebService desc="Webservice Configuration for JQuery Mobile Widget Eshop application" name="eshopService">
             <port>7777</port>
             <password/>
             <context>nodejseshop</context>

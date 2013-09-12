@@ -44,7 +44,7 @@ require(  [ "jquery", "eshop/widgets/MyCart"], function($, MyCart) {
         myCartSubTotal = $('<div class="mycart_subtotal">Subtotal: $200</div>');
         myCartButton = $('<div class="mycart_btn">');
         myCartButtonMid = $('<div class="mycart_btn_mid">');
-        myCartCheckOut = $('<div class="mycart_mid_bu"><a href="#">Checkout</a></div>');
+        myCartCheckOut = $('<div id="checkoutid" class="mycart_mid_bu"><a href="#">Checkout</a></div>');
         
         myCartButtonMid.append(myCartCheckOut);
         myCartButton.append(myCartButtonMid);
@@ -98,7 +98,7 @@ require(  [ "jquery", "eshop/widgets/MyCart"], function($, MyCart) {
         myCartSubTotal = $('<div class="mycart_subtotal">Subtotal: $200</div>');
         myCartButton = $('<div class="mycart_btn">');
         myCartButtonMid = $('<div class="mycart_btn_mid">');
-        myCartCheckOut = $('<div class="mycart_mid_bu"><a href="#">Checkout</a></div>');
+        myCartCheckOut = $('<div id="checkoutid" class="mycart_mid_bu"><a href="#">Checkout</a></div>');
     
         myCartButtonMid.append(myCartCheckOut);
         myCartButton.append(myCartButtonMid);
@@ -152,7 +152,7 @@ require(  [ "jquery", "eshop/widgets/MyCart"], function($, MyCart) {
         myCartSubTotal = $('<div class="mycart_subtotal">Subtotal: $200</div>');
         myCartButton = $('<div class="mycart_btn">');
         myCartButtonMid = $('<div class="mycart_btn_mid">');
-        myCartCheckOut = $('<div class="mycart_mid_bu"><a href="#">Checkout</a></div>');
+        myCartCheckOut = $('<div id="checkoutid" class="mycart_mid_bu"><a href="#">Checkout</a></div>');
     
         myCartButtonMid.append(myCartCheckOut);
         myCartButton.append(myCartButtonMid);

@@ -96,7 +96,7 @@ require(  [ "jquery", "eshop/widgets/ShoppingCart", "eshop/widgets/EShopAPI", "e
 	        mycart_update_view_bu1 =  $('<div class="mycart_update_view_bu">');
 	        mycart_update_view_bu1.append(mycart_mid_bu1);
 			if(productArray.length !== 0){
-				mycart_mid_bu1 =  $('<div class="mycart_mid_bu"><a>Check Out</a></div>');
+				mycart_mid_bu1 =  $('<div id="checkoutid" class="mycart_mid_bu"><a>Check Out</a></div>');
 			} 
 			mycart_update_view_bu1.append(mycart_mid_bu1);
 	        clearDiv =  $('<div style="clear:both"></div>');
