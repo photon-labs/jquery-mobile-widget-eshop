@@ -43,7 +43,7 @@ define( "eshop/widgets/ProductDetails", [ "jquery", "framework/Clazz", "framewor
 				return;
 			}
 			productDetails = jsonObject.product[0];
-			detailImageURL = self.api.wsURLWithoutContext +'/images/web/' + productDetails.image;
+			detailImageURL = self.api.wsURL +'/images/web/' + productDetails.image;
 			productName = $('<div class="product_name"> ' + productDetails.name + ' </div>');
 			pd = $('<div class="cat_listerDetail">');
 			pdUL = $('<ul>');
