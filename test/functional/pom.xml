@@ -20,7 +20,7 @@
 		<dependency>
 			 <groupId>org.seleniumhq.selenium</groupId>
  <artifactId>selenium-server-standalone</artifactId>
- <version>2.30.0</version>
+ <version>2.37.0</version>
 		</dependency>
 		<dependency>
 	<groupId>org.seleniumhq.selenium</groupId>
@@ -103,7 +103,7 @@
 										<artifactItem>
 												<groupId>org.seleniumhq.selenium</groupId>
                                          		<artifactId>selenium-server-standalone</artifactId>
-                                          		<version>2.30.0</version>
+                                          		<version>2.37.0</version>
 												<overWrite>false</overWrite>
 											    <outputDirectory>${project.basedir}/lib</outputDirectory>
 								 		</artifactItem>

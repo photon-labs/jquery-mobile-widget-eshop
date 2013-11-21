@@ -29,6 +29,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
@@ -40,6 +41,9 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.google.common.base.Function;
@@ -215,13 +219,23 @@ public class BaseScreen {
 		}
 
 	}
+	
+	
+	public void highlightElement(WebElement element) {
+		for (int i = 0; i < 2; i++) { 
+			JavascriptExecutor js = (JavascriptExecutor) driver; js.executeScript("arguments[0].setAttribute('style', arguments[1]);", 
+					element, "color: blue;background: cyan; border: 3px solid blue;"); 
+			js.executeScript("arguments[0].setAttribute('style', arguments[1]);", 
+					element, "");
+		}
+	}
 
 	public void getXpathWebElement(String xpath) throws Exception {
 		log.info(" ENTERING XPATH WEBELEMENT ");
 		try {
 
 			element = driver.findElement(By.xpath(xpath));
-
+            highlightElement(element);
 		} catch (Throwable t) {
 			log.info("THROWABLE EXCEPTION IN GETXPATHWEBELEMENT "
 					+ t.getMessage());
@@ -234,7 +248,7 @@ public class BaseScreen {
 		log.info(" ENTERING ID WEBELEMENT ");
 		try {
 			element = driver.findElement(By.id(id));
-
+            highlightElement(element);
 		} catch (Throwable t) {
 			log.info("THROWABLE EXCEPTION IN GETIDWEBELEMENT " + t.getMessage());
 
@@ -246,7 +260,7 @@ public class BaseScreen {
 		log.info(" ENTERING CSS WEBELEMENT ");
 		try {
 			element = driver.findElement(By.cssSelector(selector));
-
+            highlightElement(element);
 		} catch (Throwable t) {
 			log.info("THROWABLE EXCEPTION IN GETCSSWEBELEMENT "
 					+ t.getMessage());
