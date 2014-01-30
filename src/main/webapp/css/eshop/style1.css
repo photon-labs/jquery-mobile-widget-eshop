@@ -646,7 +646,7 @@ padding-right:3px;
 }
 
 /* view myCart */
-.mycart_div {width:100%; float:left;}
+.mycart_div {width:100%; float:left; max-height: 320px; overflow-y: auto; overflow-x: hidden;}
 .mycart_head {width:98%; height:33px; padding:12px 0 0 2%; background-color:#efeeee; font-size:18px; color:#363636; float:left;}
 .mycart_quantity {width:97%; padding:10px 1% 6px 2%; border-bottom:1px solid #ebeced; float:left;}
 .mycart_quan {width:100%; float:left;}

@@ -72,6 +72,7 @@ define( "eshop/widgets/Login", [ "jquery", "framework/Clazz", "framework/Widget"
             log_bu_login = $('<div class="log_bu_login">');
             log_reg_bu = $('<div class="log_reg_bu"><a href="#">Submit</a></div>');
             $(log_reg_bu).bind('click', {} , function(event){
+			    event.preventDefault();
 			    self.hideItems = ['Login'];
 				if(self.phrescoapi.userLogin() === true){
 					var obj =  self.api.doLogin(self.phrescoapi.logindata);
