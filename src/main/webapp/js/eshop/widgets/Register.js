@@ -75,9 +75,29 @@ define( "eshop/widgets/Register", [ "jquery", "framework/Clazz", "framework/Widg
         log_bu_login = $('<div class="log_bu_login">');
         log_reg_bu = $('<div class="log_reg_bu"><a href="#">Register</a></div>');
 
+        $(log_reg_bu).on('click', function(e){
+            e.preventDefault();
+            self.hideItems = ['Register'];
+            if(self.phrescoapi.userRegister() === true){
+                var obj =  self.api.doRegister(self.phrescoapi.registerdata);
+                self.phrescoapi.hideWidget(self.hideItems);
+                self.listener.publish(event,"RegisterSuccess",[event.data]);
+                self.listener.publish(event,"Navigation",[event.data]);
+            }
+        });  
+
         log_bu_login.append(log_reg_bu);
         log_bu_cancel = $('<div class="log_bu_cancel">');
         log_reg_bu1 = $('<div class="log_reg_bu"><a href="javascript:void(0);">Cancel</a></div>');
+
+        $(log_reg_bu1).on('click', function(event){
+            self.hideItems = ['Register','Navigation','Header','Footer'];
+            $("#footer").show();
+            $("#eshop").hide();
+            self.phrescoapi.hideWidget(self.hideItems);
+            self.listener.publish(event,"Menu",[event.data]);
+        });   
+
         log_bu_cancel.append(log_reg_bu1);       
         log_bu_div.append(log_bu_login);     
         log_bu_div.append(log_bu_cancel);

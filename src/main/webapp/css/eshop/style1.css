@@ -716,6 +716,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .star_bar_arrow a {width:100%; text-decoration:none;}
 
 .star_text {width:100%; font-size:11px; color:#464646; line-height:15px; padding:5px 0 0 0; float:left;}
+
+/* Checkout Scroll Fix */
+@media screen and (max-height: 500px) {
+    #checkout_div {max-height: 330px; overflow-y: auto; overflow-x: hidden;}
+}
+
 /* Checkout-1 */
 .checkout_tab {width:98%; height:30px; padding:15px 0 10px 2%; background: #ffffff; background: -moz-linear-gradient(top, #ffffff 0%, #eeeded 50%, #ffffff 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#eeeded), color-stop(100%,#ffffff)); background: -webkit-linear-gradient(top, #ffffff 0%,#eeeded 50%,#ffffff 100%); background: -o-linear-gradient(top, #ffffff 0%,#eeeded 50%,#ffffff 100%); background: -ms-linear-gradient(top, #ffffff 0%,#eeeded 50%,#ffffff 100%); background: linear-gradient(top, #ffffff 0%,#eeeded 50%,#ffffff 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); border-bottom:1px solid #ebeced; float:left;}
 

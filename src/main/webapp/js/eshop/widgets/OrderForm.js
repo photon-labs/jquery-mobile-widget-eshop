@@ -96,7 +96,7 @@ define( "eshop/widgets/OrderForm", [ "jquery", "framework/Clazz", "framework/Wid
 		totalItemprice.amount = pricequantity.totalPrice;
 		
 		mainContent = $('<div></div>');
-		mycart = $('<div class="mycart_div" >');
+		mycart = $('<div class="mycart_div" id="checkout_div">');
 		mycart_head = $('<div class="mycart_head">Checkout</div>');
 		checkout_tab = $('<div class="checkout_tab"><a >Customer Information</a></div>');
 		checkout_tab.obj = this;
